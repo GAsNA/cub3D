@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/09 17:29:34 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/09 18:10:41 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ define SRCS :=
 endef
 
 define HDRS :=
+	c3d_map.h
 endef
 
 SRCS_DIR := srcs
@@ -28,6 +29,7 @@ OBJS_DIR := objs
 INCS_DIR := incs
 
 define LIBS :=
+	libft/libft.a
 endef
 
 # ============================================================================ #
@@ -49,14 +51,14 @@ endif
 #                                 Functions                                    #
 # ============================================================================ #
 
-all: $(LIBS) $(NAME)
+all: $(NAME)
 
 clean:
 	@rm -vf $(OBJ_FILES)
+	@make -C libft fclean
 .PHONY: clean
 
-fclean:
-	@rm -vf $(OBJ_FILES)
+fclean: clean
 	@rm -vf $(NAME)
 .PHONY: fclean
 
@@ -69,6 +71,9 @@ re: fclean all
 
 $(NAME): $(OBJ_FILES) $(LIBS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS)
+
+libft/libft.a:
+	@make -C libft libft.a
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HDR_FILES)
 	@mkdir -vp $(dir $@)

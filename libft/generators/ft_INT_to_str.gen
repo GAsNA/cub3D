@@ -1,0 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_INT_to_str.gen                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/20 00:25:42 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/05/20 00:39:47 by nmathieu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_{UINT}_to_str({UINT_T} i, t_str base, char *buf_end)
+{
+	if (i == 0)
+		return (*(--buf_end) = base.data[0], buf_end);
+	while (i)
+	{
+		buf_end--;
+		*buf_end = base.data[i % base.len];
+		i /= base.len;
+	}
+	return (buf_end);
+}

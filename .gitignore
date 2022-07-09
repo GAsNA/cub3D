@@ -1,2 +1,5 @@
 objs
 cub3D
+
+libft/inter
+libft/libft.a

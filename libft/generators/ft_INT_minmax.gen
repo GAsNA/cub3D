@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_INT_minmax.gen                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/22 08:33:55 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/05/22 08:57:01 by nmathieu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+{INT_T}	ft_{INT}_min({INT_T} a, {INT_T} b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+{UINT_T}	ft_{UINT}_min({UINT_T} a, {UINT_T} b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+{INT_T}	ft_{INT}_max({INT_T} a, {INT_T} b)
+{
+	if (a < b)
+		return (b);
+	else
+		return (a);
+}
+
+{UINT_T}	ft_{UINT}_max({UINT_T} a, {UINT_T} b)
+{
+	if (a < b)
+		return (b);
+	else
+		return (a);
+}
