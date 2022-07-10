@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:38:00 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 14:10:09 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 14:47:53 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,6 +277,10 @@ void		ft_reader_reserve(t_reader *reader, size_t count);
 // can be overriden when needed. 
 void		ft_reader_consume(t_reader *reader, size_t count);
 
+// Returns `t_str` instance over the bytes that were read by the `t_reader`,
+// from the first not-consumed byte, to the last outputed character.
+t_str		ft_reader_str(const t_reader *reader);
+
 // ========================================================================== //
 //                                   Format                                   //
 // ========================================================================== //
@@ -323,7 +327,7 @@ bool		ft_dbg(const char *format, ...);
 typedef size_t				t_unwind;
 
 // A function that is responsible for freeing some datastructure.
-typedef void				(*t_free_fn)(void *data);
+typedef void				(*t_free_fn)();
 
 // Registers a new value for unwinding.
 //
@@ -383,7 +387,7 @@ void		ft_vec_reserve(t_vec *vec, size_t additional, size_t elem_size);
 
 // Frees the provided vector, calling the `free_el` function on every element
 // within the vector.
-void		ft_vec_free(t_vec *vec, void (*free_el)(void *), size_t elem_size);
+void		ft_vec_free(t_vec *vec, void (*free_el)(), size_t elem_size);
 
 // ========================================================================== //
 // 								     Debug                                    //

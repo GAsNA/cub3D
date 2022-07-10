@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 14:07:13 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 14:47:16 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 // A cardinal direction.
 typedef enum e_card
 {
-	C3D_DIR_NORTH = 1U << 0U,
-	C3D_DIR_EAST = 1U << 1U,
-	C3D_DIR_WEST = 1U << 2U,
-	C3D_DIR_EAST = 1U << 3U,
+	C3D_DIR_NORTH,
+	C3D_DIR_SOUTH,
+	C3D_DIR_WEST,
+	C3D_DIR_EAST,
 }	t_card;
 
 // An RGB color.
@@ -74,22 +74,11 @@ typedef struct s_map
 	t_player	player;
 }	t_map;
 
-// Stores a report of the errors that may occur whilst parsing a map.
 typedef struct s_map_errors
 {
-	size_t	north_textures;
-	size_t	south_textures;
-	size_t	west_textures;
-	size_t	east_textures;
-	size_t	floor_colors;
-	size_t	ceiling_colors;
-	
-	char	*unknown_ident;
-
-	bool	map_is_not_enclosed;
-	bool	no_player_starting_position;
-
-	char	unknown_map_char;
+	char	**data;
+	size_t	len;
+	size_t	cap;
 }	t_map_errors;
 
 // Parses a cub3d map from the provided file descriptor.
