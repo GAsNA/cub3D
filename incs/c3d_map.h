@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 19:53:31 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 20:36:08 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,6 @@ typedef struct s_color
 	uint8_t	blue;
 }	t_color;
 
-// An axis-aligned wall defined by its bounds.
-//
-// The `min_x` and `max_y` bounds are included in the wall, the `max_x` and
-// `max_y` bounds are *not* included.
-typedef struct s_wall
-{
-	uint32_t	min_x;
-	uint32_t	min_y;
-	uint32_t	max_x;
-	uint32_t	max_y;
-}	t_wall;
-
 // Information about the player, as defined in a cub3D map.
 typedef struct s_player
 {
@@ -69,9 +57,6 @@ typedef struct s_map
 
 	size_t		width;
 	size_t		height;
-
-	t_wall		*walls;
-	size_t		wall_count;
 
 	t_player	player;
 }	t_map;

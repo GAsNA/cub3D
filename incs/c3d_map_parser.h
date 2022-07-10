@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:56:12 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:14:52 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 20:24:45 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,9 @@ void	c3d_map_parser_push_error(t_map_parser *self, const char *format, ...);
 // Determines whether the map is properly enclosed. If it is not, error messages
 // are added to the list.
 bool	c3d_map_parser_is_enclosed(t_map_parser *self);
+
+// Populates the `walls` array of the inner `t_map` with walls as big as
+// possible. 
+void	c3d_map_make_walls(t_map_parser *self);
 
 #endif
