@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:09:06 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:09:17 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:22:51 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,8 @@ static t_str	parse_ident(t_map_parser *self)
 	return (str);
 }
 
-bool	c3d_map_parser_field(t_map_parser *self)
+static bool	parse_value(t_map_parser *self, t_str id)
 {
-	uint8_t	byte;
-	t_str	id;
-
-	if (!ft_reader_get(&self->reader, 0, &byte) || byte == ' ' || byte == '\t')
-		return (false);
-	id = parse_ident(self);
 	if (id.len == 2 && id.data[0] == 'N' && id.data[1] == 'O')
 		c3d_map_parser_filename(self, id, &self->map->north_texture);
 	else if (id.len == 2 && id.data[0] == 'E' && id.data[1] == 'A')
@@ -43,13 +37,28 @@ bool	c3d_map_parser_field(t_map_parser *self)
 	else if (id.len == 2 && id.data[0] == 'W' && id.data[1] == 'E')
 		c3d_map_parser_filename(self, id, &self->map->west_texture);
 	else if (id.len == 1 && id.data[0] == 'C')
-		c3d_map_parser_color(self, id, &self->map->ceiling_color);
+		c3d_map_parser_color(
+			self, id,
+			&self->map->ceiling_color, &self->has_ceiling_color);
 	else if (id.len == 1 && id.data[0] == 'F')
-		c3d_map_parser_color(self, id, &self->map->floor_color);
+		c3d_map_parser_color(
+			self, id,
+			&self->map->floor_color, &self->has_floor_color);
 	else
 		return (
 			c3d_map_parser_push_error(
 				self, "line {ulong}: '{str}' is not a known identifier",
 				self->line, id), c3d_map_parser_skip_line(self), true);
 	return (true);
+}
+
+bool	c3d_map_parser_field(t_map_parser *self)
+{
+	uint8_t	b;
+	t_str	id;
+
+	if (!ft_reader_get(&self->reader, 0, &b) || b == ' ' || b == '\t')
+		return (false);
+	id = parse_ident(self);
+	return (parse_value(self, id));
 }

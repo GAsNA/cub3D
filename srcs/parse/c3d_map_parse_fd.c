@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:25:14 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:37:01 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:27:10 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	do_parse(t_map_parser *self)
 {
 	while ((c3d_map_parser_skip_empty_lines(self), c3d_map_parser_field(self)))
 		;
+	if (!c3d_map_parser_validate_fields(self))
+		return ;
 	c3d_map_parser_skip_empty_lines(self);
 	if (!c3d_map_parser_map(self))
 		return ;

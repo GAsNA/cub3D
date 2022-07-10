@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:18:19 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 19:31:21 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:22:33 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,20 @@ static bool	parse_uint8(t_map_parser *self, uint8_t *result)
 	return (true);
 }
 
-bool	c3d_map_parser_color(t_map_parser *self, t_str ident, t_color *result)
+bool	c3d_map_parser_color(
+			t_map_parser *self,
+			t_str ident,
+			t_color *result,
+			bool *done)
 {
-	if (result->red != 0 || result->green != 0 || result->blue != 0)
+	if (*done)
 		return (
 			c3d_map_parser_push_error(
 				self, "line {ulong}: '{str}' has already been defined",
 				self->line, ident),
 			c3d_map_parser_skip_line(self),
 			false);
+	*done = true;
 	if (!parse_uint8(self, &result->red)
 		|| !parse_uint8(self, &result->green)
 		|| !parse_uint8(self, &result->blue))

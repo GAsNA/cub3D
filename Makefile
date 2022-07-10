@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/10 20:10:31 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/10 21:23:57 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ define SRCS :=
 	parse/c3d_map_parser_push_error.c
 	parse/c3d_map_parser_map.c
 	parse/c3d_map_parser_is_enclosed.c
+	parse/c3d_map_parser_validate_fields.c
 endef
 
 define HDRS :=

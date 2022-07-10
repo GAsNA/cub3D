@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:22:26 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:56:59 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:22:49 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ bool	c3d_map_parse(const char *file, t_map *result)
 	int			fd;
 	bool		ret;
 	const char	*ext;
-	
+
 	ext = ft_str_rfind(file, '.');
 	if (!ext || ext == file || ft_str_cmp(ext, ".cub") != 0)
 		ft_unwind_panic("'{s?}' is not a '.cub' file", file);
