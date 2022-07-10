@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:24:21 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 18:27:41 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 19:39:54 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	c3d_map_parser_push_error(t_map_parser *self, const char *format, ...)
 	va_start(args, format);
 	unwind_index = ft_unwind(&args, my_va_end);
 	ft_vec_reserve((t_vec *)&self->errors, 1, sizeof(char *));
-	self->errors.errors[self->errors.len++] = ft_sfmt_va(format, args);
+	self->errors.data[self->errors.len++] = ft_sfmt_va(format, args);
 	ft_unwind_to(unwind_index);
 }

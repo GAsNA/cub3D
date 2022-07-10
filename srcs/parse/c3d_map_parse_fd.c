@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:25:14 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 19:28:30 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 19:40:12 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ bool	c3d_map_parse_fd(int fd, t_map *result)
 	do_parse(&parser);
 	if (parser.errors.len != 0)
 	{
-		print_errors(parser.errors.errors, parser.errors.len);
+		print_errors(parser.errors.data, parser.errors.len);
 		return (ft_unwind_to(unwind_index), false);
 	}
 	ft_unwind_defuse(unwind_index);

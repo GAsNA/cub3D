@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:56:12 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 19:25:53 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 19:59:11 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,33 @@
 // Stores the state required to parse a `t_map` instance.
 typedef struct s_map_parser
 {
-	t_reader		reader;
-	size_t			line;
+	t_reader	reader;
+	size_t		line;
 
-	t_map			*map;
+	t_map		*map;
+
+	size_t		width;
+	size_t		height;
+
+	struct s_map_parser_walls
+	{
+		bool	*data;
+		size_t	len;
+		size_t	cap;
+	}	walls;
+	struct s_map_parser_lines
+	{
+		struct s_map_parser_lines_element
+		{
+			bool	*line;
+			size_t	len;
+		}		*data;
+		size_t	len;
+		size_t	cap;
+	}	lines;
 	struct s_map_parser_errors
 	{
-		char	**errors;
+		char	**data;
 		size_t	len;
 		size_t	cap;
 	}	errors;

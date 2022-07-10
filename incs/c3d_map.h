@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 17:06:10 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 19:53:31 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 # include <stdbool.h>
 
 // A cardinal direction.
-typedef enum e_card
+typedef enum e_dir
 {
-	C3D_DIR_NORTH,
-	C3D_DIR_EAST,
-	C3D_DIR_WEST,
-	C3D_DIR_SOUTH,
-}	t_card;
+	C3D_DIR_NORTH = 1,
+	C3D_DIR_EAST = 2,
+	C3D_DIR_WEST = 4,
+	C3D_DIR_SOUTH = 8,
+}	t_dir;
 
 // An RGB color.
 typedef struct s_color
@@ -53,7 +53,7 @@ typedef struct s_player
 {
 	uint32_t	x;
 	uint32_t	y;
-	t_card		dir;
+	t_dir		dir;
 }	t_player;
 
 // Stores a fully parsed map.
