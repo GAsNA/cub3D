@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:56:12 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:04:23 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 20:14:52 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_map_parser
 
 	struct s_map_parser_walls
 	{
-		bool	*data;
+		uint8_t	*data;
 		size_t	len;
 		size_t	cap;
 	}	walls;
@@ -37,7 +37,7 @@ typedef struct s_map_parser
 	{
 		struct s_map_parser_lines_element
 		{
-			bool	*line;
+			uint8_t	*line;
 			size_t	len;
 		}		*data;
 		size_t	len;
@@ -88,5 +88,9 @@ bool	c3d_map_parser_map(t_map_parser *self);
 
 // Pushes a new error at the end of the error list.
 void	c3d_map_parser_push_error(t_map_parser *self, const char *format, ...);
+
+// Determines whether the map is properly enclosed. If it is not, error messages
+// are added to the list.
+bool	c3d_map_parser_is_enclosed(t_map_parser *self);
 
 #endif

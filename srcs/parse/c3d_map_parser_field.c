@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:09:06 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 19:35:46 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 20:09:17 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ bool	c3d_map_parser_field(t_map_parser *self)
 		return (
 			c3d_map_parser_push_error(
 				self, "line {ulong}: '{str}' is not a known identifier",
-				self->line, id), c3d_map_parser_skip_line(self), false);
+				self->line, id), c3d_map_parser_skip_line(self), true);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:07:52 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 20:23:43 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static bool	set_player_spawn_point(t_map_parser *self, t_dir direction)
 	self->map->player.dir = direction;
 	self->map->player.x = self->walls.len;
 	self->map->player.y = self->lines.len;
-	self->walls.data[self->walls.len++] = false;
+	self->walls.data[self->walls.len++] = 0;
 	return (true);
 }
 
@@ -45,9 +45,9 @@ bool	absorbe_char(t_map_parser *self, uint8_t b)
 {
 	ft_vec_reserve((t_vec *)&self->walls, 1, sizeof(bool));
 	if (b == ' ' || b == '0')
-		self->walls.data[self->walls.len++] = false;
+		self->walls.data[self->walls.len++] = 0;
 	else if (b == '1')
-		self->walls.data[self->walls.len++] = true;
+		self->walls.data[self->walls.len++] = 1;
 	else if (b == 'N')
 		return (set_player_spawn_point(self, C3D_DIR_NORTH));
 	else if (b == 'E')
@@ -59,11 +59,12 @@ bool	absorbe_char(t_map_parser *self, uint8_t b)
 	else if (b == '\n')
 		new_line(self);
 	else
-		return (
-			c3d_map_parser_push_error(self,
-				"line {ulong}: character '{c?}' not expected in the map",
-				self->line, b),
-			false);
+	{
+		c3d_map_parser_push_error(self,
+			"line {ulong}: character '{c?}' not expected in the map",
+			self->line, b);
+		self->walls.data[self->walls.len++] = 0;
+	}
 	return (true);
 }
 
@@ -78,5 +79,8 @@ bool	c3d_map_parser_map(t_map_parser *self)
 		any_error |= absorbe_char(self, b);
 		ft_reader_consume(&self->reader, 1);
 	}
+	if (self->map->player.dir == 0)
+		return (c3d_map_parser_push_error(self,
+				"no spawn point defined for the player"), false);
 	return (any_error);
 }
