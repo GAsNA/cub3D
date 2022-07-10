@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 16:55:03 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 17:06:10 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,10 @@ typedef struct s_map
 }	t_map;
 
 // Parses a cub3d map from the provided file descriptor.
-bool	c3d_map_parse_fd(int fd, t_map *result, t_vec *errors);
+bool	c3d_map_parse_fd(int fd, t_map *result);
 
 // Parses a cub3D map from the provided filename.
-bool	c3d_map_parse(const char *filename, t_map *result, t_vec *errs);
+bool	c3d_map_parse(const char *filename, t_map *result);
 
 // Frees the ressources that were allocated for a `t_map` instance.
 void	c3d_map_free(t_map *self);

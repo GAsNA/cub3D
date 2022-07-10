@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_map_parse_fd.c                                 :+:      :+:    :+:   */
+/*   c3d_map_parser_init.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/10 14:25:14 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 17:27:06 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/10 17:02:21 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/10 17:04:53 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_map_parser.h"
-#include "libft.h"
+#include <stdlib.h>
 
-bool	c3d_map_parse_fd(int fd, t_map *result)
+void	c3d_map_parser_init(t_map_parser *self, int fd, t_map *result)
 {
-	t_unwind		unwind_index;
-	t_map_parser	parser;
+	ft_mem_set(self, 0x00, sizeof(t_map_parser));
+	ft_reader_init(&self->reader, fd);
+	self->map = result;
+}
 
-	ft_mem_set(result, 0x00, sizeof(t_map));
-	unwind_index = ft_unwind(result, c3d_map_free);
-	ft_parser_init(&parser, fd, result);
-	ft_unwind(&parser, c3d_map_parser_deinit);
-
-	return (ft_unwind_to(unwind_index), false);
+void	c3d_map_parser_deinit(t_map_parser *self)
+{
+	ft_reader_deinit(&self->reader);
+	ft_vec_free((t_vec *)&self->errors, free, sizeof(char *));
 }
