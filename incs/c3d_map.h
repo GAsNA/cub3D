@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 14:47:16 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 16:13:18 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 typedef enum e_card
 {
 	C3D_DIR_NORTH,
-	C3D_DIR_SOUTH,
-	C3D_DIR_WEST,
 	C3D_DIR_EAST,
+	C3D_DIR_WEST,
+	C3D_DIR_SOUTH,
 }	t_card;
 
 // An RGB color.

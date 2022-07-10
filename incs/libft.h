@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:38:00 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 14:47:53 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 16:52:14 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,6 @@ typedef struct s_reader
 	size_t		init;
 	size_t		cap;
 	size_t		con;
-	size_t		cur;
 	int			fd;
 }	t_reader;
 
@@ -249,23 +248,11 @@ void		ft_reader_init(t_reader *reader, int fd);
 // Frees the resources that were allocated for `t_reader` instance.
 void		ft_reader_deinit(t_reader *reader);
 
-// Reads another byte from the provided reader, refilling it if needed.
+// Reads additional bytes into the reader. Calls to `read` will be of at least
+// `min_read_size` bytes.
 //
-// If the function returns `false`, there is no more data to produce and `byte`
-// is left unspecified.
-//
-// If a read error occurs, the function panics.
-bool		ft_reader_next(t_reader *reader, uint8_t *byte);
-
-// Reads another byte from the provided reader, refilling it if needed. The
-// internal cursor of the reader is not incremented, meaning that a later call
-// to `ft_reader_next` or `ft_reader_peek` will provide the same byte.
-//
-// If the function returns `false`, there is no more data to produce and `byte`
-// is left unspecified.
-//
-// If an error occurs, the function panics.
-bool		ft_reader_peek(t_reader *reader, uint8_t *byte);
+// If read error occurs, the function panics.
+bool		ft_reader_refill(t_reader *r, size_t min_read_size);
 
 // Makes sure that the reader can read at least `count` additional bytes
 // continuously without reallocating.
@@ -277,8 +264,8 @@ void		ft_reader_reserve(t_reader *reader, size_t count);
 // can be overriden when needed. 
 void		ft_reader_consume(t_reader *reader, size_t count);
 
-// Returns `t_str` instance over the bytes that were read by the `t_reader`,
-// from the first not-consumed byte, to the last outputed character.
+// Returns a `t_str` over the bytes currently stored in this `t_reader`
+// instance that were not consumed.
 t_str		ft_reader_str(const t_reader *reader);
 
 // ========================================================================== //
@@ -316,8 +303,15 @@ bool		ft_fmt(const char *format, ...);
 // Formats the provided string and writes to the standard error.
 bool		ft_efmt(const char *format, ...);
 
-/// Writes something on the standard error (only on `DEBUG` builds).
-bool		ft_dbg(const char *format, ...);
+// Formats the provided string into a new string.
+//
+// If an allocation error occurs, the function panics.
+char		*ft_sfmt_va(const char *format, va_list args);
+
+// Formats the provided string into a new string.
+//
+// If an allocation error occurs, the function panics.
+char		*ft_sfmt(const char *format, ...);
 
 // ========================================================================== //
 //                             Stack Unwinding                                //
@@ -395,5 +389,8 @@ void		ft_vec_free(t_vec *vec, void (*free_el)(), size_t elem_size);
 
 // Makes an assertion. Aborts the process if it is false.
 void		ft_assert(bool assertion, const char *msg, ...);
+
+/// Writes something on the standard error (only on `DEBUG` builds).
+bool		ft_dbg(const char *format, ...);
 
 #endif
