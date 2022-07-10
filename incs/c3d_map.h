@@ -6,12 +6,14 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 16:13:18 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 16:55:03 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef C3D_MAP_H
 # define C3D_MAP_H
+
+# include "libft.h"
 
 # include <stddef.h>
 # include <stdint.h>
@@ -74,23 +76,13 @@ typedef struct s_map
 	t_player	player;
 }	t_map;
 
-typedef struct s_map_errors
-{
-	char	**data;
-	size_t	len;
-	size_t	cap;
-}	t_map_errors;
-
 // Parses a cub3d map from the provided file descriptor.
-bool	c3d_map_parse_fd(int fd, t_map *result, t_map_errors *errors);
+bool	c3d_map_parse_fd(int fd, t_map *result, t_vec *errors);
 
 // Parses a cub3D map from the provided filename.
-bool	c3d_map_parse(const char *filename, t_map *result, t_map_errors *errs);
+bool	c3d_map_parse(const char *filename, t_map *result, t_vec *errs);
 
 // Frees the ressources that were allocated for a `t_map` instance.
 void	c3d_map_free(t_map *self);
-
-// Frees the resources that were allocated for a `t_map` instance.
-void	c3d_map_errors_free(t_map_errors *self);
 
 #endif

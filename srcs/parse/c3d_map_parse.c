@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:22:26 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 14:25:05 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 16:54:44 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "libft.h"
 #include <fcntl.h>
 
-bool	c3d_map_parse(const char *filename, t_map *result, t_map_errors *errs)
+bool	c3d_map_parse(const char *filename, t_map *result, t_vec *errs)
 {
 	t_unwind	unwind_index;
 	int			fd;
