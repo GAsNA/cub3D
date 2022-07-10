@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:38:00 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/06/21 18:30:07 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 13:59:28 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,23 +207,34 @@ void		ft_mem_set(void *dst, uint8_t byte, size_t n);
 //                               Input/Output                                 //
 // ========================================================================== //
 
+// Opens a file with the specified flags.
+//
+// If an error occurs, the function panics.
+int			ft_open(const char *filename, int flags);
+
+// Closes the provided file descriptor.
+void		ft_close(int *fd);
+
 // Writes `data` to the provided file descriptor. Returns whether no error
 // occured.
 bool		ft_write_all(int fd, const void *data, size_t to_write);
 
-# define READER_BUF_SIZE 1024
-
 // Stores the state of a reader.
 typedef struct s_reader
 {
-	int		fd;
-	size_t	init;
-	size_t	consumed;
-	uint8_t	buf[READER_BUF_SIZE];
+	uint8_t		*data;
+	size_t		init;
+	size_t		cap;
+	size_t		con;
+	size_t		cur;
+	int			fd;
 }	t_reader;
 
 // Initializes a `t_reader` instance.
 void		ft_reader_init(t_reader *reader, int fd);
+
+// Frees the resources that were allocated for `t_reader` instance.
+void		ft_reader_deinit(t_reader *reader);
 
 // Reads another byte from the provided reader, refilling it if needed.
 //
@@ -232,6 +243,26 @@ void		ft_reader_init(t_reader *reader, int fd);
 //
 // If a read error occurs, the function panics.
 bool		ft_reader_next(t_reader *reader, uint8_t *byte);
+
+// Reads another byte from the provided reader, refilling it if needed. The
+// internal cursor of the reader is not incremented, meaning that a later call
+// to `ft_reader_next` or `ft_reader_peek` will provide the same byte.
+//
+// If the function returns `false`, there is no more data to produce and `byte`
+// is left unspecified.
+//
+// If an error occurs, the function panics.
+bool		ft_reader_peek(t_reader *reader, uint8_t *byte);
+
+// Makes sure that the reader can read at least `count` additional bytes
+// continuously without reallocating.
+//
+// If the system is out of memory, the function panics.
+void		ft_reader_reserve(t_reader *reader, size_t count);
+
+// Notifies a `t_reader` instance that `count` bytes wont be needed anymore and
+// can be overriden when needed. 
+void		ft_reader_consume(t_reader *reader, size_t count);
 
 // ========================================================================== //
 //                                   Format                                   //
@@ -275,6 +306,9 @@ bool		ft_dbg(const char *format, ...);
 //                             Stack Unwinding                                //
 // ========================================================================== //
 
+// Stores an index that is suitable for stack unwinding.
+typedef size_t				t_unwind;
+
 // A function that is responsible for freeing some datastructure.
 typedef void				(*t_free_fn)(void *data);
 
@@ -282,16 +316,16 @@ typedef void				(*t_free_fn)(void *data);
 //
 // This function returns an integer that can be used to unwind the stack up to
 // this call.
-size_t		ft_unwind(void *data, t_free_fn destructor);
+t_unwind	ft_unwind(void *data, t_free_fn destructor);
 
 // Unwinds the stack up to the provided index.
-void		ft_unwind_to(size_t to);
+void		ft_unwind_to(t_unwind to);
 
 // Unwinds the stack, prints an error message and exits with `1`.
 void		ft_unwind_panic(const char *msg, ...);
 
 // Defuses the destructor of the provided index.
-void		ft_unwind_defuse(size_t index);
+void		ft_unwind_defuse(t_unwind index);
 
 // ========================================================================== //
 //                                Allocations                                 //

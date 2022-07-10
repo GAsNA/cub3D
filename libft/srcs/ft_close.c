@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_reader_next.c                                   :+:      :+:    :+:   */
+/*   ft_close.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/19 15:09:51 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 13:53:40 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/09 18:26:29 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/09 18:30:34 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdbool.h>
+#include <unistd.h>
 
-bool	ft_reader_next(t_reader *reader, uint8_t *byte)
+void	ft_close(int *fd)
 {
-	if (!ft_reader_peek(reader, byte))
-		return (false);
-	reader->cur++;
-	return (true);
+	close(*fd);
 }
