@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:02:21 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 21:16:39 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 22:08:27 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,19 @@ static void	my_free(char **ptr)
 	free(*ptr);
 }
 
+static void free_line(struct s_map_parser_line *line)
+{
+	if (line->len)
+		free(line->line);
+}
+
 void	c3d_map_parser_deinit(t_map_parser *self)
 {
 	ft_reader_deinit(&self->reader);
-	ft_vec_free((t_vec *)&self->errors, my_free, sizeof(char *));
+	ft_vec_free(
+		(t_vec *)&self->lines, free_line, sizeof(struct s_map_parser_line));
+	ft_vec_free(
+		(t_vec *)&self->errors, my_free, sizeof(char *));
+	if (self->walls.cap)
+		free(self->walls.data);
 }

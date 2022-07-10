@@ -6,27 +6,27 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 18:09:06 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 21:22:51 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:59:35 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_map_parser.h"
 
-static t_str	parse_ident(t_map_parser *self)
+static bool	parse_ident(t_map_parser *self, t_str *result)
 {
 	size_t	i;
 	uint8_t	b;
-	t_str	str;
 
 	i = 0;
-	while (ft_reader_get(&self->reader, i, &b) && b != ' ' && b == '\t')
+	while (ft_reader_get(&self->reader, i, &b) && 'A' <= b && b <= 'Z')
 		i++;
-	str = (t_str){(void *)self->reader.data + self->reader.con, i};
-	ft_reader_consume(&self->reader, i);
-	return (str);
+	if (i == 0 || (b != ' ' && b != '\n' && b != '\t'))
+		return (false);
+	*result = (t_str){(void *)self->reader.data + self->reader.con, i};
+	return (ft_reader_consume(&self->reader, i), true);
 }
 
-static bool	parse_value(t_map_parser *self, t_str id)
+static void	parse_value(t_map_parser *self, t_str id)
 {
 	if (id.len == 2 && id.data[0] == 'N' && id.data[1] == 'O')
 		c3d_map_parser_filename(self, id, &self->map->north_texture);
@@ -45,20 +45,20 @@ static bool	parse_value(t_map_parser *self, t_str id)
 			self, id,
 			&self->map->floor_color, &self->has_floor_color);
 	else
-		return (
-			c3d_map_parser_push_error(
-				self, "line {ulong}: '{str}' is not a known identifier",
-				self->line, id), c3d_map_parser_skip_line(self), true);
-	return (true);
+	{
+		c3d_map_parser_push_error(
+			self, "line {ulong}: '{str}' is not a known identifier",
+			self->line, id);
+		c3d_map_parser_skip_line(self);
+	}
 }
 
 bool	c3d_map_parser_field(t_map_parser *self)
 {
-	uint8_t	b;
 	t_str	id;
 
-	if (!ft_reader_get(&self->reader, 0, &b) || b == ' ' || b == '\t')
+	if (!parse_ident(self, &id))
 		return (false);
-	id = parse_ident(self);
-	return (parse_value(self, id));
+	parse_value(self, id);
+	return (true);
 }

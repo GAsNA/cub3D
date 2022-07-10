@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:23:43 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 22:19:57 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,18 @@ static bool	set_player_spawn_point(t_map_parser *self, t_dir direction)
 
 static void	new_line(t_map_parser *self)
 {
-	ft_vec_reserve((t_vec *)&self->lines, 1, sizeof(bool));
-	self->lines.data[self->lines.len].line
-		= ft_alloc_array(self->walls.len, sizeof(bool));
-	ft_mem_copy(
-		self->lines.data[self->lines.len].line,
-		self->walls.data,
-		self->walls.len);
+	ft_vec_reserve((t_vec *)&self->lines, 1, sizeof(struct s_map_parser_line));
+	if (self->walls.len)
+	{
+		self->lines.data[self->lines.len].line
+			= ft_alloc_array(self->walls.len, sizeof(uint8_t));
+		ft_mem_copy(
+			self->lines.data[self->lines.len].line,
+			self->walls.data,
+			self->walls.len);
+	}
+	else
+		self->lines.data[self->lines.len].line = NULL;
 	self->lines.data[self->lines.len].len = self->walls.len;
 	self->walls.len = 0;
 	self->lines.len++;
@@ -43,7 +48,7 @@ static void	new_line(t_map_parser *self)
 
 bool	absorbe_char(t_map_parser *self, uint8_t b)
 {
-	ft_vec_reserve((t_vec *)&self->walls, 1, sizeof(bool));
+	ft_vec_reserve((t_vec *)&self->walls, 1, sizeof(uint8_t));
 	if (b == ' ' || b == '0')
 		self->walls.data[self->walls.len++] = 0;
 	else if (b == '1')
@@ -79,8 +84,16 @@ bool	c3d_map_parser_map(t_map_parser *self)
 		any_error |= absorbe_char(self, b);
 		ft_reader_consume(&self->reader, 1);
 	}
+	new_line(self);
 	if (self->map->player.dir == 0)
 		return (c3d_map_parser_push_error(self,
 				"no spawn point defined for the player"), false);
+	for (size_t i = 0; i < self->lines.len; i++)
+	{
+		for (size_t j = 0; j < self->lines.data[i].len; j++)
+			printf("%i ", self->lines.data[i].line[j]);
+		printf("\n");
+	}
+	printf("\n");
 	return (any_error);
 }

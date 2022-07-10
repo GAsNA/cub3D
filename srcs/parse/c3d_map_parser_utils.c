@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:44:49 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 19:26:49 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:41:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ void	c3d_map_parser_skip_empty_lines(t_map_parser *self)
 	uint8_t	byte;
 	size_t	index;
 
-	if (!ft_reader_refill(&self->reader, 64))
-		return ;
 	index = 0;
 	while (ft_reader_get(&self->reader, index, &byte))
 	{
-		if (byte != ' ' && byte != '\t')
+		if (byte != ' ' && byte != '\t' && byte != '\n')
 			return ;
 		index++;
 		if (byte == '\n')

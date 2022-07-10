@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:56:12 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 21:24:33 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 22:02:49 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_map_parser
 	}	walls;
 	struct s_map_parser_lines
 	{
-		struct s_map_parser_lines_element
+		struct s_map_parser_line
 		{
 			uint8_t	*line;
 			size_t	len;

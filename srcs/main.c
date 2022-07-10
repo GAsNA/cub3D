@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:23:30 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:50:42 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 22:19:41 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static void	print_map(t_map *self)
 		self->ceiling_color.red,
 		self->ceiling_color.green,
 		self->ceiling_color.blue);
-	ft_fmt("C: {u8},{u8},{u8}\n\n",
+	ft_fmt("F: {u8},{u8},{u8}\n\n",
 		self->floor_color.red,
 		self->floor_color.green,
 		self->floor_color.blue);
-	ft_fmt("Player Dir: {uint}", self->player.dir);
-	ft_fmt("Player Pos: {u32}, {u32}", self->player.x, self->player.y);
+	ft_fmt("Player Dir: {uint}\n", self->player.dir);
+	ft_fmt("Player Pos: {u32}, {u32}\n", self->player.x, self->player.y);
 }
 
 int	main(int ac, char **av)

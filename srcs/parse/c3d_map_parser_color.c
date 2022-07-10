@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:18:19 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 21:22:33 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 21:54:01 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static bool	str_to_uint8(t_str str, uint8_t *result)
 	return (true);
 }
 
-static bool	parse_uint8(t_map_parser *self, uint8_t *result)
+static bool	parse_uint8(t_map_parser *self, uint8_t *result, char sep)
 {
 	size_t	i;
 	size_t	j;
@@ -37,22 +37,21 @@ static bool	parse_uint8(t_map_parser *self, uint8_t *result)
 
 	c3d_map_parser_skip_spaces(self);
 	i = 0;
-	while (ft_reader_get(&self->reader, i, &b) && b != '\n' && b != ',')
-		i++;
-	if (b == '\n' || b == ',')
+	while (ft_reader_get(&self->reader, i, &b) && b != sep)
 		i++;
 	j = i;
+	if (b == sep)
+		i++;
 	while (ft_reader_get(&self->reader, j - 1, &b) && (b == ' ' || b == '\t'))
 		j--;
 	str = (t_str){(void *)self->reader.data + self->reader.con, j};
 	if (!str_to_uint8(str, result))
-	{
-		c3d_map_parser_push_error(
-			self, "line {ulong}: '{str?}' is not a valid byte",
-			self->line, str);
-		c3d_map_parser_skip_line(self);
-		return (false);
-	}
+		return (
+			c3d_map_parser_push_error(
+				self, "line {ulong}: '{str?}' is not a valid byte",
+				self->line, str),
+			ft_reader_consume(&self->reader, i),
+			false);
 	ft_reader_consume(&self->reader, i);
 	return (true);
 }
@@ -71,9 +70,9 @@ bool	c3d_map_parser_color(
 			c3d_map_parser_skip_line(self),
 			false);
 	*done = true;
-	if (!parse_uint8(self, &result->red)
-		|| !parse_uint8(self, &result->green)
-		|| !parse_uint8(self, &result->blue))
+	if (!parse_uint8(self, &result->red, ',')
+		|| !parse_uint8(self, &result->green, ',')
+		|| !parse_uint8(self, &result->blue, '\n'))
 		return (c3d_map_parser_skip_line(self), false);
 	return (true);
 }
