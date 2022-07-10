@@ -1,18 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_close.c                                         :+:      :+:    :+:   */
+/*   ft_str_dup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 18:26:29 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/09 18:30:34 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/10 14:09:50 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/10 14:12:00 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "libft.h"
 
-void	ft_close(int *fd)
+char	*ft_str_dup(const char *s)
 {
-	close(*fd);
+	const size_t	len = ft_str_len(s);
+	char			*ret;
+
+	ret = ft_alloc(len + 1);
+	ft_mem_copy(ret, s, len + 1);
+	return (ret);
+}
+
+char	*ft_str_ndup(const char *s, size_t n)
+{
+	const size_t	len = ft_str_nlen(s, n);
+	char			*ret;
+
+	ret = ft_alloc(len + 1);
+	ft_mem_copy(ret, s, len);
+	ret[len] = '\0';
+	return (ret);
 }

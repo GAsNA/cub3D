@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/09 18:03:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 14:07:13 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stddef.h>
 # include <stdint.h>
+# include <stdbool.h>
 
 // A cardinal direction.
 typedef enum e_card
@@ -73,13 +74,34 @@ typedef struct s_map
 	t_player	player;
 }	t_map;
 
+// Stores a report of the errors that may occur whilst parsing a map.
+typedef struct s_map_errors
+{
+	size_t	north_textures;
+	size_t	south_textures;
+	size_t	west_textures;
+	size_t	east_textures;
+	size_t	floor_colors;
+	size_t	ceiling_colors;
+	
+	char	*unknown_ident;
+
+	bool	map_is_not_enclosed;
+	bool	no_player_starting_position;
+
+	char	unknown_map_char;
+}	t_map_errors;
+
 // Parses a cub3d map from the provided file descriptor.
-void	c3d_map_parse_fd(int fd);
+bool	c3d_map_parse_fd(int fd, t_map *result, t_map_errors *errors);
 
 // Parses a cub3D map from the provided filename.
-void	c3d_map_parse(const char *filename);
+bool	c3d_map_parse(const char *filename, t_map *result, t_map_errors *errs);
 
 // Frees the ressources that were allocated for a `t_map` instance.
 void	c3d_map_free(t_map *self);
+
+// Frees the resources that were allocated for a `t_map` instance.
+void	c3d_map_errors_free(t_map_errors *self);
 
 #endif
