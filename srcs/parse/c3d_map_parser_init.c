@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:02:21 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 22:08:27 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 23:08:55 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	my_free(char **ptr)
 	free(*ptr);
 }
 
-static void free_line(struct s_map_parser_line *line)
+static void	free_line(struct s_map_parser_line *line)
 {
 	if (line->len)
 		free(line->line);
