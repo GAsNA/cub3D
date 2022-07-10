@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:56:12 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 18:28:05 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 19:25:53 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,23 @@ void	c3d_map_parser_init(t_map_parser *self, int fd, t_map *result);
 
 // Frees the resources that were allocated for a `t_map_parser` instance.
 void	c3d_map_parser_deinit(t_map_parser *self);
+
+// Consume every character until (and including) the first `\n` character.
+void	c3d_map_parser_skip_line(t_map_parser *self);
+
+// Consume every whitespace (not including the `\n` character).
+void	c3d_map_parser_skip_spaces(t_map_parser *self);
+
+// Parses a file name until the end of the line.
+//
+// If `result` is not `NULL`, an error is returned and the function returns
+// `false`.
+bool	c3d_map_parser_filename(t_map_parser *self, t_str ident, char **result);
+
+// Parses a `t_color` instance until the end of the line.
+//
+// If `result` is not a fully-zeroed value, an error is returned.
+bool	c3d_map_parser_color(t_map_parser *self, t_str ident, t_color *result);
 
 // Tries to parse a key-value pair at the begining of the parser. If an error
 // occurs, it is added to the list.

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_map_parser_skip_empty_lines.c                  :+:      :+:    :+:   */
+/*   c3d_map_parser_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:44:49 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 18:11:04 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/10 19:26:49 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,28 @@ void	c3d_map_parser_skip_empty_lines(t_map_parser *self)
 		}
 	}
 	ft_reader_consume(&self->reader, index);
+}
+
+void	c3d_map_parser_skip_spaces(t_map_parser *self)
+{
+	size_t	i;
+	uint8_t	b;
+
+	i = 0;
+	while (ft_reader_get(&self->reader, i, &b) && (b == ' ' || b == '\t'))
+		i++;
+	ft_reader_consume(&self->reader, i);
+}
+
+void	c3d_map_parser_skip_line(t_map_parser *self)
+{
+	size_t	i;
+	uint8_t	b;
+
+	i = 0;
+	while (ft_reader_get(&self->reader, i, &b) && b != '\n')
+		i++;
+	if (b == '\n')
+		i++;
+	ft_reader_consume(&self->reader, i);
 }
