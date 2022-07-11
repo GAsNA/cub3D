@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:56:12 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 22:02:49 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 18:22:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,14 @@ bool	c3d_map_parser_color(
 // The function returns an actual key-value pair could be found.
 bool	c3d_map_parser_field(t_map_parser *self);
 
-// Skip empty lines (or lines only made of spaces). 
-void	c3d_map_parser_skip_empty_lines(t_map_parser *self);
+// Skip empty lines (or lines only made of spaces).
+//
+// Returns whether the end of the file has been reached.
+bool	c3d_map_parser_skip_empty_lines(t_map_parser *self);
+
+// Determines whether the only that that's left in the file is empty lines or
+// lines only made of spaces.
+bool	c3d_map_parser_is_end_of_file(t_map_parser *self);
 
 // Tries to parse a map.
 bool	c3d_map_parser_map(t_map_parser *self);
