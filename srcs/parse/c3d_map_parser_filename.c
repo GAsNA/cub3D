@@ -6,16 +6,27 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:15:33 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:25:21 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:40:50 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_map_parser.h"
 
+static char	*trim_str_right(t_map_parser *self, size_t end)
+{
+	size_t	j;
+	uint8_t	b;
+
+	j = end;
+	while (ft_reader_get(&self->reader, j - 1, &b)
+		&& (b == '\n' || b == ' ' || b == '\t'))
+		j--;
+	return (ft_str_ndup((void *)self->reader.data + self->reader.con, j));
+}
+
 bool	c3d_map_parser_filename(t_map_parser *self, t_str ident, char **result)
 {
 	size_t	i;
-	size_t	j;
 	uint8_t	b;
 
 	if (*result)
@@ -34,11 +45,7 @@ bool	c3d_map_parser_filename(t_map_parser *self, t_str ident, char **result)
 		i++;
 		self->line++;
 	}
-	j = i;
-	while (ft_reader_get(&self->reader, j - 1, &b)
-		&& (b == '\n' || b == ' ' || b == '\t'))
-		j--;
-	*result = ft_str_ndup((void *)self->reader.data + self->reader.con, j);
+	*result = trim_str_right(self, i);
 	ft_reader_consume(&self->reader, i);
 	return (true);
 }

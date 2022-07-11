@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:18:19 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:27:01 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:41:27 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,7 @@ static bool	parse_uint8(t_map_parser *self, uint8_t *result, char sep)
 		return (
 			c3d_map_parser_push_error(
 				self, "line {ulong}: '{str?}' is not a valid byte",
-				self->line, str),
-			ft_reader_consume(&self->reader, i),
-			false);
+				self->line, str), ft_reader_consume(&self->reader, i), false);
 	ft_reader_consume(&self->reader, i);
 	return (true);
 }

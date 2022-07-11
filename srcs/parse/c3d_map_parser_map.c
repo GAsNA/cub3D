@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:28:11 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:36:37 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static void	new_line(t_map_parser *self)
 	self->lines.data[self->lines.len].len = self->walls.len;
 	self->walls.len = 0;
 	self->lines.len++;
+	self->line++;
 }
 
 bool	absorbe_char(t_map_parser *self, uint8_t b)
@@ -64,13 +65,14 @@ bool	absorbe_char(t_map_parser *self, uint8_t b)
 	else if (b == 'W')
 		return (set_player_spawn_point(self, C3D_DIR_WEST));
 	else if (b == '\n')
-		(self->line++, new_line(self));
+		new_line(self);
 	else
 	{
 		c3d_map_parser_push_error(self,
 			"line {ulong}: character '{c?}' not expected in the map",
 			self->line, b);
 		self->walls.data[self->walls.len++] = 0;
+		return (false);
 	}
 	return (true);
 }
