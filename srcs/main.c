@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:23:30 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 22:19:41 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 20:44:56 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static void	print_map(t_map *self)
 	ft_fmt("SO: {s?}\n", self->south_texture);
 	ft_fmt("WE: {s?}\n", self->west_texture);
 	ft_fmt("EA: {s?}\n\n", self->east_texture);
-	ft_fmt("C: {u8},{u8},{u8}\n",
+	ft_fmt("C: {u8}, {u8}, {u8}\n",
 		self->ceiling_color.red,
 		self->ceiling_color.green,
 		self->ceiling_color.blue);
-	ft_fmt("F: {u8},{u8},{u8}\n\n",
+	ft_fmt("F: {u8}, {u8}, {u8}\n\n",
 		self->floor_color.red,
 		self->floor_color.green,
 		self->floor_color.blue);
