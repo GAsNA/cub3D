@@ -6,12 +6,14 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:25:14 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 22:18:18 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 10:54:30 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_map_parser.h"
 #include "libft.h"
+
+#define MAX_ERRORS 16
 
 static void	print_errors(char **errors, size_t len)
 {
@@ -26,10 +28,15 @@ static void	print_errors(char **errors, size_t len)
 
 static void	do_parse(t_map_parser *self)
 {
-	while ((c3d_map_parser_skip_empty_lines(self), c3d_map_parser_field(self)))
+	while (self->errors.len < MAX_ERRORS
+		&& (c3d_map_parser_skip_empty_lines(self), c3d_map_parser_field(self)))
 		;
-	if (!c3d_map_parser_validate_fields(self))
+	c3d_map_parser_validate_fields(self);
+	if (self->errors.len >= MAX_ERRORS)
+	{
+		c3d_map_parser_push_error(self, "too many errors; fix your map!");
 		return ;
+	}
 	c3d_map_parser_skip_empty_lines(self);
 	if (!c3d_map_parser_map(self))
 		return ;
