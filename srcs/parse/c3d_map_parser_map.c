@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 17:48:11 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:56:18 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,8 @@ bool	c3d_map_parser_map(t_map_parser *self)
 	for (size_t i = 0; i < self->lines.len; i++)
 	{
 		for (size_t j = 0; j < self->lines.data[i].len; j++)
-			printf("%i ", self->lines.data[i].line[j]);
-		printf("\n");
+			ft_fmt("{u8} ", self->lines.data[i].line[j]);
+		ft_fmt("\n");
 	}
-	printf("\n");
 	return (any_error);
 }
