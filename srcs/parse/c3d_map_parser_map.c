@@ -6,11 +6,13 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:06:07 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:23:09 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_map_parser.h"
+
+#define MAX_ERRORS 32
 
 static bool	set_player_spawn_point(t_map_parser *self, t_dir direction)
 {
@@ -79,7 +81,7 @@ bool	c3d_map_parser_map(t_map_parser *self)
 	bool	any_error;
 
 	any_error = false;
-	while (ft_reader_get(&self->reader, 0, &b))
+	while (self->errors.len < MAX_ERRORS && ft_reader_get(&self->reader, 0, &b))
 	{
 		any_error |= absorbe_char(self, b);
 		ft_reader_consume(&self->reader, 1);
@@ -88,6 +90,10 @@ bool	c3d_map_parser_map(t_map_parser *self)
 	if (self->map->player.dir == 0)
 		return (c3d_map_parser_push_error(self,
 				"no spawn point defined for the player"), false);
+	if (self->errors.len >= MAX_ERRORS)
+		return (
+			c3d_map_parser_push_error(self, "too many errors; fix your map!"),
+			false);
 	for (size_t i = 0; i < self->lines.len; i++)
 	{
 		for (size_t j = 0; j < self->lines.data[i].len; j++)
