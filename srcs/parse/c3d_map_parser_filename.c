@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:15:33 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 21:53:43 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:25:21 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ bool	c3d_map_parser_filename(t_map_parser *self, t_str ident, char **result)
 	while (ft_reader_get(&self->reader, i, &b) && b != '\n')
 		i++;
 	if (b == '\n')
+	{
 		i++;
+		self->line++;
+	}
 	j = i;
 	while (ft_reader_get(&self->reader, j - 1, &b)
 		&& (b == '\n' || b == ' ' || b == '\t'))

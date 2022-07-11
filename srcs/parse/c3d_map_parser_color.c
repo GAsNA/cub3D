@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:18:19 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 21:54:01 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:27:01 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ static bool	parse_uint8(t_map_parser *self, uint8_t *result, char sep)
 
 	c3d_map_parser_skip_spaces(self);
 	i = 0;
-	while (ft_reader_get(&self->reader, i, &b) && b != sep)
+	while (ft_reader_get(&self->reader, i, &b) && b != '\n' && b != sep)
 		i++;
 	j = i;
 	if (b == sep)
 		i++;
+	if (b == '\n')
+		self->line++;
 	while (ft_reader_get(&self->reader, j - 1, &b) && (b == ' ' || b == '\t'))
 		j--;
 	str = (t_str){(void *)self->reader.data + self->reader.con, j};

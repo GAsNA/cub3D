@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:44:49 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 21:41:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:24:44 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	c3d_map_parser_skip_empty_lines(t_map_parser *self)
 		index++;
 		if (byte == '\n')
 		{
+			self->line++;
 			ft_reader_consume(&self->reader, index);
 			index = 0;
 		}
@@ -52,6 +53,9 @@ void	c3d_map_parser_skip_line(t_map_parser *self)
 	while (ft_reader_get(&self->reader, i, &b) && b != '\n')
 		i++;
 	if (b == '\n')
+	{
 		i++;
+		self->line++;
+	}
 	ft_reader_consume(&self->reader, i);
 }

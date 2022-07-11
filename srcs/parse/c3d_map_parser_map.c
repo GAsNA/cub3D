@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:23:09 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/11 11:28:11 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	absorbe_char(t_map_parser *self, uint8_t b)
 	else if (b == 'W')
 		return (set_player_spawn_point(self, C3D_DIR_WEST));
 	else if (b == '\n')
-		new_line(self);
+		(self->line++, new_line(self));
 	else
 	{
 		c3d_map_parser_push_error(self,
