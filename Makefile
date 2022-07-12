@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/12 16:12:00 by rleseur          ###   ########.fr        #
+#    Updated: 2022/07/12 18:34:52 by rleseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,12 @@ CFLAGS :=
 CC := /bin/clang
 
 define SRCS :=
-	main.c	\
-	window.c
+	main.c			\
+	window.c		\
+	draw.c			\
+	actions_win.c	\
+	moving.c		\
+	free.c
 endef
 
 define HDRS :=
