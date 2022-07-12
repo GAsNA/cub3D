@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:25:14 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 10:54:30 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/12 10:37:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 static void	print_errors(char **errors, size_t len)
 {
-	ft_fmt("Error\n");
+	ft_efmt("Error\n");
 	while (len)
 	{
-		ft_fmt(" - {s}\n", *errors);
+		ft_efmt(" - {s}\n", *errors);
 		len--;
 		errors++;
 	}
