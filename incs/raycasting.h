@@ -6,16 +6,19 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:31:44 by rleseur           #+#    #+#             */
-/*   Updated: 2022/07/11 18:20:54 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/07/12 16:37:26 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAYCASTING_H
 # define RAYCASTING_H
 
-# include "libft.h"
+# include <stdio.h>
 
-# define SIZE 4
+# include "libft.h"
+# include "../minilibx/mlx.h"
+
+# define SIZE 50
 
 /* Keycode */
 # define ESC 65307
@@ -34,6 +37,17 @@ typedef struct s_vars
 	void	*win;
 }	t_vars;
 
-void	ft_open_window(char **map, int x, int y);
+typedef struct s_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}	t_img;
+
+void	ft_open_window(char map[20][36], int x, int y, int xp, int yp);
 
 #endif

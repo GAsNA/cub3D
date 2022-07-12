@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 14:07:13 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:19:02 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct s_map_errors
 	size_t	east_textures;
 	size_t	floor_colors;
 	size_t	ceiling_colors;
-	
+
 	char	*unknown_ident;
 
 	bool	map_is_not_enclosed;
