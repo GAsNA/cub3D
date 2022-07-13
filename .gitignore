@@ -5,3 +5,5 @@
 /libft/libft.a
 
 /.vscode
+
+/srcs/*.swp
