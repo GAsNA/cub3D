@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:31:44 by rleseur           #+#    #+#             */
-/*   Updated: 2022/07/12 18:35:24 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/07/13 15:58:15 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include "../minilibx/mlx.h"
 
 # define SIZE 32
+
+/* Colors */
+# define GREEN 0x0000561B
+# define RED 0x00FF0000
+# define BLACK 0x00000000
+# define WHITE 0x00FFFFFF
 
 /* Keycode */
 # define ESC 65307
@@ -68,8 +74,8 @@ struct s_game
 	char	map[20][36];
 	int		x;
 	int		y;
-	float	xp;
-	float	yp;
+	int		xp;
+	int		yp;
 };
 
 struct s_all
@@ -84,6 +90,8 @@ void	ft_open_window(t_game game);
 
 /* draw.c */
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+void	draw_line_horizontal(t_img *img, int j, int i, int color);
+void	draw_line_vertical(t_img *img, int j, int i, int color);
 void	draw_square(t_img *img, int j, int i, int color);
 void	draw_map(t_img *img, char map[20][36], int xp, int yp);
 

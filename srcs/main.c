@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:23:30 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/12 18:30:51 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/07/13 15:53:46 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	main(void)
 	ft_strdup_noM(game.map[19], "111111111111111111111111111111111111");
 	game.x = 36;
 	game.y = 20;
-	game.xp = 9;
-	game.yp = 4;
+	game.xp = 4 * SIZE;
+	game.yp = 9 * SIZE;
 	ft_open_window(game);
 	return (0);
 }
