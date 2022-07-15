@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 23:23:17 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 23:41:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 typedef struct s_img
 {
 	void		*raw;
-	size_t		line_size;
 	t_rgba		*data;
 	uint32_t	width;
 	uint32_t	height;
@@ -81,6 +80,7 @@ void	c3d_game_free_final_canvas(t_game *game);
 // the user is sent to the window.
 
 int		c3d_game_destroy_hook(t_game *game);
+int		c3d_game_loop_hook(t_game *game);
 int		c3d_game_key_pressed_hook(KeySym keysym, t_game *game);
 int		c3d_game_key_released_hook(KeySym keysym, t_game *game);
 

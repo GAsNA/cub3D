@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:26:16 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 21:19:09 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 23:40:39 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	from_raw(void *mlx_ptr, void *img, uint64_t size, t_img *result)
 	char	*addr;
 
 	addr = mlx_get_data_addr(img, &bits_per_pixel, &line_size, &big_endian);
-	if (bits_per_pixel != 32)
+	if (bits_per_pixel != 32 || (uint32_t)line_size != (uint32_t)size * 4)
 	{
 		mlx_destroy_image(mlx_ptr, img);
 		ft_unwind_panic("the current X server is not supported");
@@ -29,7 +29,6 @@ static void	from_raw(void *mlx_ptr, void *img, uint64_t size, t_img *result)
 	result->data = (t_rgba *)addr;
 	result->width = (uint32_t)size;
 	result->height = size >> 32;
-	result->line_size = line_size;
 	result->raw = img;
 }
 
