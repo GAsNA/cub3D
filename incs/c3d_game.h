@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 20:54:50 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 22:48:48 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	c3d_img_create(
 typedef struct s_game
 {
 	void	*mlx;
+	void	*win;
 
 	t_img	north_texture;
 	t_img	south_texture;
@@ -63,9 +64,14 @@ void	c3d_game_unload(t_game *game);
 // They don't have any documentation because each one simply frees one of the
 // fields of said type.
 
+void	c3d_game_destroy_mlx(t_game *game);
+void	c3d_game_destroy_window(t_game *game);
 void	c3d_game_free_north_texture(t_game *game);
 void	c3d_game_free_south_texture(t_game *game);
 void	c3d_game_free_east_texture(t_game *game);
 void	c3d_game_free_west_texture(t_game *game);
+
+// Those are the hooks.
+int		c3d_game_destroy_hook(t_game *game);
 
 #endif

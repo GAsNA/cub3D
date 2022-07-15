@@ -6,11 +6,13 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:23:30 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 20:47:53 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 22:59:02 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "mlx.h"
+#include "X11/X.h"
 #include "c3d_map.h"
 #include "c3d_game.h"
 
@@ -21,6 +23,8 @@ static void	start_game(const t_map *map)
 
 	c3d_game_load(&game, map);
 	unwind_index = ft_unwind(&game, c3d_game_unload);
+	mlx_hook(game.win, DestroyNotify, 0, c3d_game_destroy_hook, &game);
+	mlx_loop(game.mlx);
 	ft_unwind_to(unwind_index);
 }
 

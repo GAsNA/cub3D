@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/15 21:19:42 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/15 22:48:16 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,8 @@ define SRCS :=
 	game/c3d_game_load.c
 	game/c3d_img_load_file.c
 	game/c3d_game_free_wall_textures.c
+	game/c3d_game_destroy_mlx.c
+	game/c3d_game_destroy_hook.c
 endef
 SRCS := $(strip $(SRCS))
 
@@ -43,6 +45,7 @@ define HDRS :=
 	c3d_map.h
 	c3d_map_parser.h
 	c3d_math.h
+	c3d_settings.h
 endef
 HDRS := $(strip $(HDRS))
 
