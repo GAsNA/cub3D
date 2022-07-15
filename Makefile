@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/15 22:48:16 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/15 23:15:41 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ define SRCS :=
 	game/c3d_game_free_wall_textures.c
 	game/c3d_game_destroy_mlx.c
 	game/c3d_game_destroy_hook.c
+	game/c3d_game_key_hooks.c
 endef
 SRCS := $(strip $(SRCS))
 
@@ -83,6 +84,7 @@ all: $(NAME)
 clean:
 	@rm -vf $(OBJ_FILES)
 	@make -C libft fclean
+	@make -C minilibx clean
 .PHONY: clean
 
 fclean: clean

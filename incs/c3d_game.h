@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 22:48:48 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 23:12:55 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "c3d_map.h"
 # include "c3d_math.h"
 
+# include <X11/X.h>
 # include <stddef.h>
 # include <stdint.h>
 
@@ -71,7 +72,11 @@ void	c3d_game_free_south_texture(t_game *game);
 void	c3d_game_free_east_texture(t_game *game);
 void	c3d_game_free_west_texture(t_game *game);
 
-// Those are the hooks.
+// Those are the hooks passed to the MiniLibX to be called when an input from
+// the user is sent to the window.
+
 int		c3d_game_destroy_hook(t_game *game);
+int		c3d_game_key_pressed_hook(KeySym keysym, t_game *game);
+int		c3d_game_key_released_hook(KeySym keysym, t_game *game);
 
 #endif

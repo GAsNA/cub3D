@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:23:30 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 22:59:02 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 23:14:04 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@
 static void	start_game(const t_map *map)
 {
 	t_unwind	unwind_index;
-	t_game		game;
+	t_game		g;
 
-	c3d_game_load(&game, map);
-	unwind_index = ft_unwind(&game, c3d_game_unload);
-	mlx_hook(game.win, DestroyNotify, 0, c3d_game_destroy_hook, &game);
-	mlx_loop(game.mlx);
+	c3d_game_load(&g, map);
+	unwind_index = ft_unwind(&g, c3d_game_unload);
+	mlx_hook(g.win, DestroyNotify, 0, c3d_game_destroy_hook, &g);
+	mlx_hook(g.win, KeyPress, KeyPressMask, c3d_game_key_pressed_hook, &g);
+	mlx_hook(g.win, KeyRelease, KeyReleaseMask, c3d_game_key_released_hook, &g);
+	mlx_loop(g.mlx);
 	ft_unwind_to(unwind_index);
 }
 
