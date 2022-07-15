@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/11 20:58:43 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/15 04:55:51 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,13 @@ define SRCS :=
 	parse/c3d_map_parser_utils.c
 	parse/c3d_map_parser_validate_fields.c
 endef
+SRCS := $(strip $(SRCS))
 
 define HDRS :=
 	c3d_map.h
 	c3d_map_parser.h
 endef
+HDRS := $(strip $(HDRS))
 
 SRCS_DIR := srcs
 OBJS_DIR := objs
@@ -44,7 +46,9 @@ INCS_DIR := incs
 
 define LIBS :=
 	libft/libft.a
+	minilibx/libmlx_Linux.a
 endef
+LIBS := $(strip $(LIBS))
 
 # ============================================================================ #
 #                               Intermediates                                  #
@@ -88,6 +92,9 @@ $(NAME): $(OBJ_FILES) $(LIBS)
 
 libft/libft.a:
 	@make -C libft libft.a
+
+minilibx/libmlx_Linux.a:
+	@make -C minilibx
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HDR_FILES)
 	@mkdir -vp $(dir $@)
