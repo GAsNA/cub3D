@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 23:12:55 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 23:23:17 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@ typedef struct s_game
 
 	t_rgb	floor_color;
 	t_rgb	ceiling_color;
+
+	t_img	canvas;
+	t_img	final_canvas;
 }	t_game;
 
 // Initializes a `t_game` instance from the provided map.
@@ -71,6 +74,8 @@ void	c3d_game_free_north_texture(t_game *game);
 void	c3d_game_free_south_texture(t_game *game);
 void	c3d_game_free_east_texture(t_game *game);
 void	c3d_game_free_west_texture(t_game *game);
+void	c3d_game_free_canvas(t_game *game);
+void	c3d_game_free_final_canvas(t_game *game);
 
 // Those are the hooks passed to the MiniLibX to be called when an input from
 // the user is sent to the window.
