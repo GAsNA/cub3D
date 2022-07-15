@@ -6,29 +6,22 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:23:30 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 20:44:56 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 20:47:53 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "c3d_map.h"
+#include "c3d_game.h"
 
-static void	print_map(t_map *self)
+static void	start_game(const t_map *map)
 {
-	ft_fmt("NO: {s?}\n", self->north_texture);
-	ft_fmt("SO: {s?}\n", self->south_texture);
-	ft_fmt("WE: {s?}\n", self->west_texture);
-	ft_fmt("EA: {s?}\n\n", self->east_texture);
-	ft_fmt("C: {u8}, {u8}, {u8}\n",
-		self->ceiling_color.red,
-		self->ceiling_color.green,
-		self->ceiling_color.blue);
-	ft_fmt("F: {u8}, {u8}, {u8}\n\n",
-		self->floor_color.red,
-		self->floor_color.green,
-		self->floor_color.blue);
-	ft_fmt("Player Dir: {uint}\n", self->player.dir);
-	ft_fmt("Player Pos: {u32}, {u32}\n", self->player.x, self->player.y);
+	t_unwind	unwind_index;
+	t_game		game;
+
+	c3d_game_load(&game, map);
+	unwind_index = ft_unwind(&game, c3d_game_unload);
+	ft_unwind_to(unwind_index);
 }
 
 int	main(int ac, char **av)
@@ -42,6 +35,6 @@ int	main(int ac, char **av)
 	if (!c3d_map_parse(av[1], &map))
 		return (1);
 	ft_unwind(&map, c3d_map_free);
-	print_map(&map);
+	start_game(&map);
 	return (ft_unwind_to(0), 0);
 }

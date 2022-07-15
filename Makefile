@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/15 04:55:51 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/15 21:19:42 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,18 @@ define SRCS :=
 	parse/c3d_map_parser_push_error.c
 	parse/c3d_map_parser_utils.c
 	parse/c3d_map_parser_validate_fields.c
+
+	game/c3d_game_load.c
+	game/c3d_img_load_file.c
+	game/c3d_game_free_wall_textures.c
 endef
 SRCS := $(strip $(SRCS))
 
 define HDRS :=
+	c3d_game.h
 	c3d_map.h
 	c3d_map_parser.h
+	c3d_math.h
 endef
 HDRS := $(strip $(HDRS))
 
@@ -88,7 +94,7 @@ re: fclean all
 # ============================================================================ #
 
 $(NAME): $(OBJ_FILES) $(LIBS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS) -lXext -lX11
 
 libft/libft.a:
 	@make -C libft libft.a
