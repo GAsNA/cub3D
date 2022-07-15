@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/12 18:34:52 by rleseur          ###   ########.fr        #
+#    Updated: 2022/07/13 18:54:32 by rleseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,13 +79,13 @@ re: fclean all
 # ============================================================================ #
 
 $(NAME): $(OBJ_FILES) $(LIBS)
-	$(CC) $(CFLAGS) $(MLXFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS) $(MLXFLAGS)
 
 libft/libft.a:
 	@make -C libft libft.a
 
 minilibx/libmlx_Linux.a:
-	@make -C minilibx libmlx_Linux.a
+	@make -C minilibx
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HDR_FILES)
 	@mkdir -vp $(dir $@)

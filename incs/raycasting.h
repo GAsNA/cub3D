@@ -6,7 +6,7 @@
 /*   By: rleseur <rleseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:31:44 by rleseur           #+#    #+#             */
-/*   Updated: 2022/07/13 15:58:15 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/07/14 18:33:51 by rleseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 # include "libft.h"
 # include "../minilibx/mlx.h"
 
-# define SIZE 32
+# define SIZE 16
 
 /* Colors */
 # define GREEN 0x0000561B
