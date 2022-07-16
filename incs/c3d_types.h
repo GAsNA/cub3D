@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:46:18 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 20:49:30 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:50:17 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,12 @@ typedef enum e_dir
 	C3D_DIR_WEST = 4,
 	C3D_DIR_SOUTH = 8,
 }	t_dir;
+
+// Describes a hit.
+typedef struct s_hit
+{
+	t_vec2	pos;
+	t_dir	dir;
+}	t_hit;
 
 #endif
