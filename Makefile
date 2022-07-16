@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/16 20:46:21 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/16 23:07:10 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,15 +43,21 @@ define SRCS :=
 
 	graphics/c3d_game_scale_canvas.c
 	graphics/c3d_game_render.c
+	graphics/c3d_raycast.c
+	graphics/c3d_game_make_raycasted_image.c
 endef
 SRCS := $(strip $(SRCS))
 
 define HDRS :=
 	c3d_game.h
-	c3d_map.h
+	c3d_graphics.h
 	c3d_map_parser.h
-	c3d_types.h
+	c3d_map.h
 	c3d_settings.h
+	c3d_types.h
+
+	libft.h
+	mlx.h
 endef
 HDRS := $(strip $(HDRS))
 
@@ -104,7 +110,7 @@ re: fclean all
 # ============================================================================ #
 
 $(NAME): $(OBJ_FILES) $(LIBS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS) -lXext -lX11
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS) -lXext -lX11 -lm
 
 libft/libft.a:
 	@make -C libft libft.a

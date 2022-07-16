@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 20:46:26 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 22:01:02 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,6 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
-
-// Information about the player, as defined in a cub3D map.
-typedef struct s_player
-{
-	uint32_t	x;
-	uint32_t	y;
-	t_dir		dir;
-}	t_player;
 
 // Stores a fully parsed map.
 typedef struct s_map
@@ -42,7 +34,12 @@ typedef struct s_map
 	size_t		width;
 	size_t		height;
 
-	t_player	player;
+	struct s_map_player
+	{
+		uint32_t	x;
+		uint32_t	y;
+		t_dir		dir;
+	}	player;
 }	t_map;
 
 // Parses a cub3d map from the provided file descriptor.

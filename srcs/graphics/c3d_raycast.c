@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_game_render.c                                  :+:      :+:    :+:   */
+/*   c3d_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:37:57 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 22:23:00 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/16 21:06:07 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/16 23:08:13 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3d_game.h"
-#include "c3d_graphics.h"
-#include "mlx.h"
-#include "libft.h"
+#include "c3d_types.h"
+#include <stdbool.h>
+#include <math.h>
 
-void	c3d_game_render(t_game *game)
+bool	c3d_raycast(t_vec2 origin, float angle, t_hit *result)
 {
-	c3d_game_make_raycasted_image(game);
-	c3d_game_scale_canvas(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->final_canvas.raw, 0, 0);
+	origin.x += cosf(angle) * angle / 3.0f;
+	origin.y += sinf(angle) * angle / 3.0f;
+	result->dir = C3D_DIR_EAST;
+	result->pos = origin;
+	return (true);
 }

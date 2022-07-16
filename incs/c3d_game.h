@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 20:49:28 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 21:36:02 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,31 @@ void	c3d_img_create(
 			uint32_t height,
 			t_img *result);
 
+/// Information about the player.
+typedef struct s_player
+{
+	t_vec2	pos;
+	float	angle;
+}	t_player;
+
 /// Stores the state of the game.
 typedef struct s_game
 {
-	void	*mlx;
-	void	*win;
+	void		*mlx;
+	void		*win;
 
-	t_img	north_texture;
-	t_img	south_texture;
-	t_img	east_texture;
-	t_img	west_texture;
+	t_img		north_texture;
+	t_img		south_texture;
+	t_img		east_texture;
+	t_img		west_texture;
 
-	t_rgb	floor_color;
-	t_rgb	ceiling_color;
+	t_rgb		floor_color;
+	t_rgb		ceiling_color;
 
-	t_img	canvas;
-	t_img	final_canvas;
+	t_img		canvas;
+	t_img		final_canvas;
+
+	t_player	player;
 }	t_game;
 
 // Initializes a `t_game` instance from the provided map.

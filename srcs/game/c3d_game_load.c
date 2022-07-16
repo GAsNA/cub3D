@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 23:53:49 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 22:30:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "c3d_game.h"
 #include "mlx.h"
 #include <stdlib.h>
+
+#define PI 3.1415
 
 static void	load_images(t_game *game, const t_map *map)
 {
@@ -35,6 +37,19 @@ static void	load_images(t_game *game, const t_map *map)
 	ft_unwind(game, c3d_game_free_final_canvas);
 }
 
+inline static float	dir_to_angle(t_dir dir)
+{
+	if (dir == C3D_DIR_EAST)
+		return (0.0f);
+	if (dir == C3D_DIR_NORTH)
+		return (PI / 2.0f);
+	if (dir == C3D_DIR_WEST)
+		return (PI);
+	if (dir == C3D_DIR_SOUTH)
+		return (PI / 2.0f + PI);
+	return (0.0f);
+}
+
 void	c3d_game_load(t_game *game, const t_map *map)
 {
 	t_unwind	unwind_index;
@@ -54,6 +69,9 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	load_images(game, map);
 	game->ceiling_color = map->ceiling_color;
 	game->floor_color = map->floor_color;
+	game->player.pos.x = (float)map->player.x - (float)map->width / 2.0f;
+	game->player.pos.y = (float)map->player.x - (float)map->width / 2.0f;
+	game->player.angle = dir_to_angle(map->player.dir);
 	ft_unwind_defuse_to(unwind_index);
 }
 

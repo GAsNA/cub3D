@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:46:18 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 20:50:17 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 22:31:33 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,17 @@ typedef struct s_rgb
 /// An RGBA color.
 typedef struct s_rgba
 {
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
-	uint8_t	alpha;
+	union
+	{
+		struct
+		{
+			uint8_t	red;
+			uint8_t	green;
+			uint8_t	blue;
+		};
+		t_rgb		rgb;
+	};
+	uint8_t			alpha;
 }	t_rgba;
 
 // A cardinal direction.
