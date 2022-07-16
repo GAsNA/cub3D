@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 23:41:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:49:28 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define C3D_GAME_H
 
 # include "c3d_map.h"
-# include "c3d_math.h"
+# include "c3d_types.h"
 
 # include <X11/X.h>
 # include <stddef.h>

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_math.h                                         :+:      :+:    :+:   */
+/*   c3d_types.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:46:18 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 20:29:13 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:49:30 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C3D_MATH_H
-# define C3D_MATH_H
+#ifndef C3D_TYPES_H
+# define C3D_TYPES_H
 
 # include <stdint.h>
 
@@ -46,5 +46,14 @@ typedef struct s_rgba
 	uint8_t	blue;
 	uint8_t	alpha;
 }	t_rgba;
+
+// A cardinal direction.
+typedef enum e_dir
+{
+	C3D_DIR_NORTH = 1,
+	C3D_DIR_EAST = 2,
+	C3D_DIR_WEST = 4,
+	C3D_DIR_SOUTH = 8,
+}	t_dir;
 
 #endif

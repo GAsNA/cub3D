@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/15 23:43:46 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/16 20:46:21 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ define HDRS :=
 	c3d_game.h
 	c3d_map.h
 	c3d_map_parser.h
-	c3d_math.h
+	c3d_types.h
 	c3d_settings.h
 endef
 HDRS := $(strip $(HDRS))

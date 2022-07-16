@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 20:29:22 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 20:46:26 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,11 @@
 # define C3D_MAP_H
 
 # include "libft.h"
-# include "c3d_math.h"
+# include "c3d_types.h"
 
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
-
-// A cardinal direction.
-typedef enum e_dir
-{
-	C3D_DIR_NORTH = 1,
-	C3D_DIR_EAST = 2,
-	C3D_DIR_WEST = 4,
-	C3D_DIR_SOUTH = 8,
-}	t_dir;
 
 // Information about the player, as defined in a cub3D map.
 typedef struct s_player
