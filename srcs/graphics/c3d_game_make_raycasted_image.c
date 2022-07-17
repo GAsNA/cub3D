@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:59:24 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 23:05:30 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/17 08:51:11 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,7 @@ inline static void	make_hit_column(t_game *game, t_hit *hit, size_t column)
 {
 	uint32_t	s;
 
-	s = (uint32_t)((float)C3D_CUBE_HEIGHT
-			/ ((hit->pos.x - game->player.pos.x)
-				* (hit->pos.x - game->player.pos.x)
-				+ (hit->pos.y - game->player.pos.y)
-				* (hit->pos.y - game->player.pos.y) + 1.0f));
+	s = (uint32_t)((float)C3D_CUBE_HEIGHT / (hit->distance + 1.0f));
 	if (hit->dir == C3D_DIR_NORTH)
 		make_column(game, &game->north_texture, column, s);
 	else if (hit->dir == C3D_DIR_EAST)

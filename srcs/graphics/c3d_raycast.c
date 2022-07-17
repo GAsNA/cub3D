@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 21:06:07 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 23:08:13 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/17 08:54:09 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 bool	c3d_raycast(t_vec2 origin, float angle, t_hit *result)
 {
-	origin.x += cosf(angle) * angle / 3.0f;
-	origin.y += sinf(angle) * angle / 3.0f;
 	result->dir = C3D_DIR_EAST;
-	result->pos = origin;
+	result->distance = 0.2f * (angle + 50.0f);
+	printf("%f\n", result->distance);
+	(void)origin;
 	return (true);
 }

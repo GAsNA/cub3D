@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:46:18 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 22:31:33 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/17 08:50:45 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef enum e_dir
 // Describes a hit.
 typedef struct s_hit
 {
-	t_vec2	pos;
+	float	distance;
 	t_dir	dir;
 }	t_hit;
 
