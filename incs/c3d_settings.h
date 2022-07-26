@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 19:12:04 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:15:33 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define C3D_CUBE_HEIGHT 90
 
 /// The distance between the center of the minimap and the edge of the screen.
-# define C3D_MINIMAP_OFFSET 45
+# define C3D_MINIMAP_OFFSET 25
 /// The size of each pixel of the minimap.
 # define C3D_MINIMAP_SCALE 1.0f
 /// The squared radius of the minimap.
-# define C3D_MINIMAP_RADIUS 40
+# define C3D_MINIMAP_RADIUS 20
 
 /// The speed at which the game is played.
 /// This value can be adjusted if the computer is too fast.
