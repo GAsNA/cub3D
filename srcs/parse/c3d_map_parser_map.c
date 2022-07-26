@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 12:56:48 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:58:22 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	new_line(t_map_parser *self)
 	self->line++;
 }
 
-bool	absorbe_char(t_map_parser *self, uint8_t b)
+static bool	absorbe_char(t_map_parser *self, uint8_t b)
 {
 	ft_vec_reserve((t_vec *)&self->walls, 1, sizeof(uint8_t));
 	if (b == ' ' || b == '0')

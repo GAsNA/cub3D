@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 17:02:21 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 12:42:59 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:20:02 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 void	c3d_map_parser_init(t_map_parser *self, int fd, t_map *result)
 {
 	ft_mem_set(self, 0x00, sizeof(t_map_parser));
+	ft_mem_set(result, 0x00, sizeof(t_map));
 	ft_reader_init(&self->reader, fd);
 	self->map = result;
 	self->line = 1;

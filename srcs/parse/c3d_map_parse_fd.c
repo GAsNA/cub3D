@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:25:14 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/12 10:37:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:25:09 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,32 @@ static void	print_errors(char **errors, size_t len)
 	}
 }
 
+static void	send_map(t_map_parser *self)
+{
+	size_t			i;
+	size_t			h;
+	size_t			w;
+	size_t			len;
+
+	w = 0;
+	i = (size_t)-1;
+	while (++i < self->lines.len && self->lines.data[i].len != 0)
+		if (self->lines.data[i].len > w)
+			w = self->lines.data[i].len;
+	h = i;
+	self->map->tiles = ft_alloc_array(w * h, sizeof(t_tile));
+	i = 0;
+	while (i < h)
+	{
+		len = self->lines.data[i].len;
+		ft_mem_copy(self->map->tiles + w * i, self->lines.data[i].line, len);
+		ft_mem_set(self->map->tiles + len, C3D_TILE_WALL, w - len);
+		i++;
+	}
+	self->map->width = w;
+	self->map->height = h;
+}
+
 static void	do_parse(t_map_parser *self)
 {
 	while (self->errors.len < MAX_ERRORS
@@ -42,6 +68,7 @@ static void	do_parse(t_map_parser *self)
 		return ;
 	if (!c3d_map_parser_is_enclosed(self))
 		return ;
+	send_map(self);
 }
 
 bool	c3d_map_parse_fd(int fd, t_map *result)
