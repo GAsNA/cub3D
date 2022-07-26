@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:25:14 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 13:25:09 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:30:44 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	send_map(t_map_parser *self)
 
 	w = 0;
 	i = (size_t)-1;
-	while (++i < self->lines.len && self->lines.data[i].len != 0)
+	while (++i < self->lines.len)
 		if (self->lines.data[i].len > w)
 			w = self->lines.data[i].len;
 	h = i;

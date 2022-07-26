@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 12:58:22 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:30:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ static bool	set_player_spawn_point(t_map_parser *self, t_dir direction)
 
 static void	new_line(t_map_parser *self)
 {
-	if (self->walls.len == 0 && !c3d_map_parser_is_end_of_file(self))
+	if (self->walls.len == 0)
 	{
-		c3d_map_parser_push_error(
-			self, "line {ulong}: empty line found while parsing the map",
-			self->line++);
+		if (!c3d_map_parser_is_end_of_file(self))
+			c3d_map_parser_push_error(
+				self, "line {ulong}: empty line found while parsing the map",
+				self->line++);
 		return ;
 	}
 	ft_vec_reserve((t_vec *)&self->lines, 1, sizeof(struct s_map_parser_line));
