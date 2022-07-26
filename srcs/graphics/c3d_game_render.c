@@ -1,44 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unwind_panic.c                                  :+:      :+:    :+:   */
+/*   c3d_game_render.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 18:22:01 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:33:56 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/15 23:37:57 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/16 22:23:00 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "c3d_game.h"
+#include "c3d_graphics.h"
+#include "mlx.h"
 #include "libft.h"
-#include <unistd.h>
-#include <stdlib.h>
 
-#ifdef DEBUG
-
-static void	end_process(int ret)
+void	c3d_game_render(t_game *game)
 {
-	(void)ret;
-	abort();
-}
-
-#else
-
-static void	end_process(int ret)
-{
-	exit(ret);
-}
-
-#endif
-
-void	ft_unwind_panic(const char *msg, ...)
-{
-	va_list	args;
-
-	va_start(args, msg);
-	ft_fmt_fd_va(STDERR_FILENO, msg, args);
-	ft_write_all(STDERR_FILENO, "\n", 1);
-	va_end(args);
-	ft_unwind_to(0);
-	end_process(1);
+	c3d_game_make_raycasted_image(game);
+	c3d_game_scale_canvas(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->final_canvas.raw, 0, 0);
 }

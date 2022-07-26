@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/11 20:58:43 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/16 23:07:10 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,35 @@ define SRCS :=
 	parse/c3d_map_parser_push_error.c
 	parse/c3d_map_parser_utils.c
 	parse/c3d_map_parser_validate_fields.c
+
+	game/c3d_game_load.c
+	game/c3d_img_load_file.c
+	game/c3d_game_free_wall_textures.c
+	game/c3d_game_destroy_mlx.c
+	game/c3d_game_destroy_hook.c
+	game/c3d_game_key_hooks.c
+	game/c3d_game_free_canvas.c
+	game/c3d_game_loop_hook.c
+
+	graphics/c3d_game_scale_canvas.c
+	graphics/c3d_game_render.c
+	graphics/c3d_raycast.c
+	graphics/c3d_game_make_raycasted_image.c
 endef
+SRCS := $(strip $(SRCS))
 
 define HDRS :=
-	c3d_map.h
+	c3d_game.h
+	c3d_graphics.h
 	c3d_map_parser.h
+	c3d_map.h
+	c3d_settings.h
+	c3d_types.h
+
+	libft.h
+	mlx.h
 endef
+HDRS := $(strip $(HDRS))
 
 SRCS_DIR := srcs
 OBJS_DIR := objs
@@ -44,7 +67,9 @@ INCS_DIR := incs
 
 define LIBS :=
 	libft/libft.a
+	minilibx/libmlx_Linux.a
 endef
+LIBS := $(strip $(LIBS))
 
 # ============================================================================ #
 #                               Intermediates                                  #
@@ -70,6 +95,7 @@ all: $(NAME)
 clean:
 	@rm -vf $(OBJ_FILES)
 	@make -C libft fclean
+	@make -C minilibx clean
 .PHONY: clean
 
 fclean: clean
@@ -84,10 +110,13 @@ re: fclean all
 # ============================================================================ #
 
 $(NAME): $(OBJ_FILES) $(LIBS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS) -lXext -lX11 -lm
 
 libft/libft.a:
 	@make -C libft libft.a
+
+minilibx/libmlx_Linux.a:
+	@make -C minilibx
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HDR_FILES)
 	@mkdir -vp $(dir $@)

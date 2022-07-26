@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:18:19 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:41:27 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 20:48:09 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static bool	parse_uint8(t_map_parser *self, uint8_t *result, char sep)
 bool	c3d_map_parser_color(
 			t_map_parser *self,
 			t_str ident,
-			t_color *result,
+			t_rgb *result,
 			bool *done)
 {
 	if (*done)

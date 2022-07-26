@@ -1,44 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unwind_panic.c                                  :+:      :+:    :+:   */
+/*   c3d_game_destroy_mlx.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 18:22:01 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:33:56 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/15 22:32:02 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/15 22:40:43 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
+#include "c3d_game.h"
+#include "mlx.h"
 #include <stdlib.h>
 
-#ifdef DEBUG
-
-static void	end_process(int ret)
+void	c3d_game_destroy_mlx(t_game *game)
 {
-	(void)ret;
-	abort();
+	mlx_destroy_display(game->mlx);
+	free(game->mlx);
 }
 
-#else
-
-static void	end_process(int ret)
+void	c3d_game_destroy_window(t_game *game)
 {
-	exit(ret);
-}
-
-#endif
-
-void	ft_unwind_panic(const char *msg, ...)
-{
-	va_list	args;
-
-	va_start(args, msg);
-	ft_fmt_fd_va(STDERR_FILENO, msg, args);
-	ft_write_all(STDERR_FILENO, "\n", 1);
-	va_end(args);
-	ft_unwind_to(0);
-	end_process(1);
+	mlx_destroy_window(game->mlx, game->win);
 }

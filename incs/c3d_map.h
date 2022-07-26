@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 20:36:08 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/16 22:01:02 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,11 @@
 # define C3D_MAP_H
 
 # include "libft.h"
+# include "c3d_types.h"
 
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
-
-// A cardinal direction.
-typedef enum e_dir
-{
-	C3D_DIR_NORTH = 1,
-	C3D_DIR_EAST = 2,
-	C3D_DIR_WEST = 4,
-	C3D_DIR_SOUTH = 8,
-}	t_dir;
-
-// An RGB color.
-typedef struct s_color
-{
-	uint8_t	red;
-	uint8_t	green;
-	uint8_t	blue;
-}	t_color;
-
-// Information about the player, as defined in a cub3D map.
-typedef struct s_player
-{
-	uint32_t	x;
-	uint32_t	y;
-	t_dir		dir;
-}	t_player;
 
 // Stores a fully parsed map.
 typedef struct s_map
@@ -52,13 +28,18 @@ typedef struct s_map
 	char		*west_texture;
 	char		*east_texture;
 
-	t_color		floor_color;
-	t_color		ceiling_color;
+	t_rgb		floor_color;
+	t_rgb		ceiling_color;
 
 	size_t		width;
 	size_t		height;
 
-	t_player	player;
+	struct s_map_player
+	{
+		uint32_t	x;
+		uint32_t	y;
+		t_dir		dir;
+	}	player;
 }	t_map;
 
 // Parses a cub3d map from the provided file descriptor.

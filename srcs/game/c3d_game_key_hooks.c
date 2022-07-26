@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_math.h                                         :+:      :+:    :+:   */
+/*   c3d_game_key_hooks.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 04:46:18 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 04:49:04 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/15 23:01:45 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/15 23:14:56 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C3D_MATH_H
-# define C3D_MATH_H
+#include "c3d_game.h"
+#include "X11/keysym.h"
+#include "X11/X.h"
+#include "mlx.h"
 
-// A 2D position.
-typedef struct s_vec2
+int	c3d_game_key_pressed_hook(KeySym keysym, t_game *game)
 {
-	float	x;
-	float	y;
-}	t_vec2;
+	if (keysym == XK_Escape)
+		return (mlx_loop_end(game->mlx));
+	return (0);
+}
 
-// A 3D position.
-typedef struct s_vec3
+int	c3d_game_key_released_hook(KeySym keysym, t_game *game)
 {
-	float x;
-	float y;
-	float z;
-}	t_vec3;
-
-#endif
+	(void)game;
+	(void)keysym;
+	return (0);
+}

@@ -1,44 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unwind_panic.c                                  :+:      :+:    :+:   */
+/*   c3d_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 18:22:01 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:33:56 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/16 21:06:07 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/26 12:12:14 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-#include <stdlib.h>
+#include "c3d_types.h"
+#include <stdbool.h>
+#include <math.h>
 
-#ifdef DEBUG
-
-static void	end_process(int ret)
+bool	c3d_raycast(t_vec2 origin, float angle, t_hit *result)
 {
-	(void)ret;
-	abort();
-}
-
-#else
-
-static void	end_process(int ret)
-{
-	exit(ret);
-}
-
-#endif
-
-void	ft_unwind_panic(const char *msg, ...)
-{
-	va_list	args;
-
-	va_start(args, msg);
-	ft_fmt_fd_va(STDERR_FILENO, msg, args);
-	ft_write_all(STDERR_FILENO, "\n", 1);
-	va_end(args);
-	ft_unwind_to(0);
-	end_process(1);
+	result->dir = C3D_DIR_EAST;
+	result->distance = 0.2f * (angle + 50.0f);
+	(void)origin;
+	return (true);
 }

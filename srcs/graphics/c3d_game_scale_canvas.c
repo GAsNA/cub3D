@@ -1,44 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unwind_panic.c                                  :+:      :+:    :+:   */
+/*   c3d_game_scale_canvas.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/26 18:22:01 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 11:33:56 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/15 23:29:20 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/15 23:37:25 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-#include <stdlib.h>
+#include "c3d_game.h"
+#include "c3d_settings.h"
 
-#ifdef DEBUG
+#define P C3D_PIXEL_SIZE
 
-static void	end_process(int ret)
+void	c3d_game_scale_canvas(t_game *game)
 {
-	(void)ret;
-	abort();
-}
+	uint32_t		x;
+	uint32_t		y;
 
-#else
-
-static void	end_process(int ret)
-{
-	exit(ret);
-}
-
-#endif
-
-void	ft_unwind_panic(const char *msg, ...)
-{
-	va_list	args;
-
-	va_start(args, msg);
-	ft_fmt_fd_va(STDERR_FILENO, msg, args);
-	ft_write_all(STDERR_FILENO, "\n", 1);
-	va_end(args);
-	ft_unwind_to(0);
-	end_process(1);
+	y = 0;
+	while (y < game->final_canvas.height)
+	{
+		x = 0;
+		while (x < game->final_canvas.width)
+		{
+			game->final_canvas.data[y * game->final_canvas.width + x]
+				= game->canvas.data[(y / P) * game->canvas.width + (x / P)];
+			x++;
+		}
+		y++;
+	}
 }
