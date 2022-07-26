@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/26 15:44:08 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/26 19:11:41 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,20 +52,6 @@ define SRCS :=
 endef
 SRCS := $(strip $(SRCS))
 
-define HDRS :=
-	c3d_game.h
-	c3d_graphics.h
-	c3d_map_parser.h
-	c3d_map.h
-	c3d_settings.h
-	c3d_types.h
-	c3d_physics.h
-
-	libft.h
-	mlx.h
-endef
-HDRS := $(strip $(HDRS))
-
 SRCS_DIR := srcs
 OBJS_DIR := objs
 INCS_DIR := incs
@@ -81,7 +67,7 @@ LIBS := $(strip $(LIBS))
 # ============================================================================ #
 
 OBJ_FILES := $(patsubst %.c,$(OBJS_DIR)/%.o,$(SRCS))
-HDR_FILES := $(addprefix $(INCS_DIR)/,$(HDRS))
+DEP_FILES := $(OBJ_FILES:.o=.d)
 
 CFLAGS := $(CFLAGS) -Wall -Wextra
 
@@ -123,6 +109,8 @@ libft/libft.a:
 minilibx/libmlx_Linux.a:
 	@make -C minilibx
 
-$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(HDR_FILES)
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -vp $(dir $@)
-	$(CC) $(CFLAGS) -I $(INCS_DIR) -o $@ -c $<
+	$(CC) $(CFLAGS) -MMD -I $(INCS_DIR) -o $@ -c $<
+
+-include $(DEP_FILES)
