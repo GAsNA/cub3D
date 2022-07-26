@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 12:53:13 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:39:50 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-# define C3D_TILE_WALL 0U
-# define C3D_TILE_FLOOR 1U
-# define C3D_TILE_TRACK 2U
+# define C3D_TILE_VOID 0U
+# define C3D_TILE_WALL 1U
+# define C3D_TILE_FLOOR 2U
+# define C3D_TILE_TRACK 3U
 
 /// A tile.
 typedef uint8_t	t_tile;

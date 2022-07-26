@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 13:30:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 13:40:27 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ static void	new_line(t_map_parser *self)
 static bool	absorbe_char(t_map_parser *self, uint8_t b)
 {
 	ft_vec_reserve((t_vec *)&self->walls, 1, sizeof(uint8_t));
-	if (b == ' ' || b == '0')
+	if (b == ' ')
+		self->walls.data[self->walls.len++] = C3D_TILE_VOID;
+	else if (b == '0')
 		self->walls.data[self->walls.len++] = C3D_TILE_FLOOR;
 	else if (b == '1')
 		self->walls.data[self->walls.len++] = C3D_TILE_WALL;
