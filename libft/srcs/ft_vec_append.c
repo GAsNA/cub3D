@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_raycast.c                                      :+:      :+:    :+:   */
+/*   ft_vec_append.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 21:06:07 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 12:12:14 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/24 19:32:16 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/24 19:33:59 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3d_types.h"
-#include <stdbool.h>
-#include <math.h>
+#include "libft.h"
 
-bool	c3d_raycast(t_vec2 origin, float angle, t_hit *result)
+void	ft_vec_append(t_vec *vec, const void *data, size_t n, size_t es)
 {
-	result->dir = C3D_DIR_EAST;
-	result->distance = 0.2f * (angle + 50.0f);
-	(void)origin;
-	return (true);
+	ft_vec_reserve(vec, n, es);
+	ft_mem_copy(vec->data, data, n * es);
+	vec->len += n;
 }

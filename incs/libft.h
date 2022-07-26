@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:38:00 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 05:21:20 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/24 19:34:09 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,10 @@ void		ft_reader_reserve(t_reader *reader, size_t count);
 
 // Notifies a `t_reader` instance that `count` bytes wont be needed anymore and
 // can be overriden when needed.
-void		ft_reader_consume(t_reader *reader, size_t count);
+//
+// The function returns `false` that operation resulted in the inner file being
+// exhausted.
+bool		ft_reader_consume(t_reader *reader, size_t count);
 
 // Returns a `t_str` over the bytes currently stored in this `t_reader`
 // instance that were not consumed.
@@ -274,6 +277,11 @@ t_str		ft_reader_str(const t_reader *reader);
 // the first non-initialized byte, the reader is refilled. In case that happens,
 // if the file is empty, `false` is returned.
 bool		ft_reader_get(t_reader *reader, size_t index, uint8_t *byte);
+
+// Returns the byte at index `index` in the provided `t_reader`. If `index` is
+// the first non-initialized byte, the reader is refilled. In case that happens,
+// if the file is empty, the function panics.
+uint8_t		ft_reader_aget(t_reader *reader, size_t index);
 
 // ========================================================================== //
 //                                   Format                                   //
@@ -388,6 +396,12 @@ void		ft_vec_realloc(t_vec *vec, size_t new_cap, size_t elem_size);
 //
 // If the allocation fails, the function panics and unwinds the stack.
 void		ft_vec_reserve(t_vec *vec, size_t additional, size_t elem_size);
+
+// Appends `n * elem_size` bytes to the end of the vector, allocating more
+// memory as needed.
+//
+// If the allocation fails, the function panics.
+void		ft_vec_append(t_vec *vec, const void *data, size_t n, size_t es);
 
 // Frees the provided vector, calling the `free_el` function on every element
 // within the vector.

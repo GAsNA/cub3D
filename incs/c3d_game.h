@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 21:36:02 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:27:22 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ typedef struct s_player
 	float	angle;
 }	t_player;
 
+# define C3D_TILE_WALL 0U
+# define C3D_TILE_FLOOR 1U
+
 /// Stores the state of the game.
 typedef struct s_game
 {
@@ -62,6 +65,10 @@ typedef struct s_game
 
 	t_img		canvas;
 	t_img		final_canvas;
+
+	size_t		width;
+	size_t		height;
+	uint8_t		*walls;
 
 	t_player	player;
 }	t_game;
