@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:25:14 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 13:40:18 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:00:18 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	send_map(t_map_parser *self)
 	{
 		len = self->lines.data[i].len;
 		ft_mem_copy(self->map->tiles + w * i, self->lines.data[i].line, len);
-		ft_mem_set(self->map->tiles + len, C3D_TILE_VOID, w - len);
+		ft_mem_set(self->map->tiles + w * i + len, C3D_TILE_VOID, w - len);
 		i++;
 	}
 	self->map->width = w;
