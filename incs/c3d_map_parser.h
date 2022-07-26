@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:56:12 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 18:22:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 20:29:27 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ bool	c3d_map_parser_filename(t_map_parser *self, t_str ident, char **result);
 bool	c3d_map_parser_color(
 			t_map_parser *self,
 			t_str ident,
-			t_color *result,
+			t_rgb *result,
 			bool *done);
 
 // Tries to parse a key-value pair at the begining of the parser. If an error

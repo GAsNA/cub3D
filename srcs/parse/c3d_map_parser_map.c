@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/11 18:23:38 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/15 05:05:10 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,5 @@ bool	c3d_map_parser_map(t_map_parser *self)
 	if (self->map->player.dir == 0)
 		return (c3d_map_parser_push_error(self,
 				"no spawn point defined for the player"), false);
-	for (size_t i = 0; i < self->lines.len; i++)
-	{
-		for (size_t j = 0; j < self->lines.data[i].len; j++)
-			ft_fmt("{u8} ", self->lines.data[i].line[j]);
-		ft_fmt("\n");
-	}
 	return (any_error);
 }

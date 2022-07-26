@@ -4,8 +4,8 @@
 /libft/inter
 /libft/libft.a
 
-/.vscode
-
 /minilibx/obj
-/minilibx/libmlx.a
 /minilibx/libmlx_Linux.a
+/minilibx/libmlx.a
+
+/.vscode
