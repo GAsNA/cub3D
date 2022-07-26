@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:32:29 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 16:21:22 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 19:09:43 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,15 @@ void	c3d_game_move_player(t_game *game)
 	float	turn_amount;
 
 	force = 0.0f;
-	if (game->input.forward)
+	if (game->input.forward && !game->input.backward)
 		force += C3D_PLAYER_FORCE * C3D_DELTA_TIME;
+	if (game->input.backward && !game->input.forward)
+	{
+		if (game->player.velocity > 0.1f)
+			force -= game->player.velocity * C3D_PLAYER_BREAK;
+		else
+			force -= C3D_PLAYER_BW_FORCE * C3D_DELTA_TIME;
+	}
 	force -= game->player.velocity * C3D_PLAYER_DRAG;
 	turn_amount = (float)game->input.left - (float)game->input.right;
 	game->player.angle += turn_amount * C3D_PLAYER_TURN * game->player.velocity;
