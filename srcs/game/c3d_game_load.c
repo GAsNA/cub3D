@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:51:04 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:46:54 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "c3d_game.h"
 #include "mlx.h"
 #include <stdlib.h>
-
-#define PI 3.1415
 
 static void	load_images(t_game *game, const t_map *map)
 {

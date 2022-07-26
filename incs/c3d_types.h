@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:46:18 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:13:35 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:46:53 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define C3D_TYPES_H
 
 # include <stdint.h>
+
+#define PI 3.1415
 
 // A 2D position.
 typedef struct s_vec2

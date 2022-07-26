@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 17:26:51 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:52:54 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@
 # define C3D_DELTA_TIME 0.2f
 
 /// The force constantly applied to the player, dragging its velocity down.
-# define C3D_PLAYER_DRAG 0.1f
+# define C3D_PLAYER_DRAG 0.05f
 /// The force applied to the player when they wish to accelerate.
-# define C3D_PLAYER_FORCE 0.3f
+# define C3D_PLAYER_FORCE 0.15f
 /// The angle added to the player each frame when they want to turn.
 # define C3D_PLAYER_TURN 0.08f
 
