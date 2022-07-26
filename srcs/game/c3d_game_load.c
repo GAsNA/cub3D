@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 22:30:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:16:50 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	game->player.pos.x = (float)map->player.x - (float)map->width / 2.0f;
 	game->player.pos.y = (float)map->player.x - (float)map->width / 2.0f;
 	game->player.angle = dir_to_angle(map->player.dir);
+	game->width = map->width;
+	game->height = map->height;
+	game->tiles = map->tiles;
 	ft_unwind_defuse_to(unwind_index);
 }
 

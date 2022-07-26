@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:23:30 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 13:25:14 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:17:05 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ int	main(int ac, char **av)
 	if (!c3d_map_parse(av[1], &map))
 		return (1);
 	ft_unwind(&map, c3d_map_free);
-	for (size_t i = 0; i < map.height; i++)
-	{
-		for (size_t j = 0; j < map.width; j++)
-			printf("%u ", map.tiles[i * map.width + j]);
-		printf("\n");
-	}
 	start_game(&map);
 	return (ft_unwind_to(0), 0);
 }

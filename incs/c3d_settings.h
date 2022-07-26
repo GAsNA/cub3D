@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 12:21:56 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:53:46 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 /// The height of a cube that is just on the player.
 # define C3D_CUBE_HEIGHT 90
 
-/// The X coordinate of the minimap.
-# define C3D_MINIMAP_X 0
-/// The Y coordinate of the minimap.
-# define C3D_MINIMAP_Y 0
+/// The distance between the center of the minimap and the edge of the screen.
+# define C3D_MINIMAP_OFFSET 30
 /// The size of each pixel of the minimap.
-# define C3D_MINIMAP_SIZE 3
+# define C3D_MINIMAP_SCALE 1
+/// The squared radius of the minimap.
+# define C3D_MINIMAP_RADIUS 25
 
 #endif

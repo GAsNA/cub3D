@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:30:07 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 22:15:45 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:18:12 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	c3d_game_render(t_game *game);
 
 /// Writes to the canvas, filling it with a raycasted image.
 void	c3d_game_make_raycasted_image(t_game *game);
+
+/// Renders the minimap.
+void    c3d_game_render_minimap(t_game *game);
 
 // Lauches a ray from `origin` at angle `angle`. If it hits a wall, `true` is
 // returned and `result` contains information about the hit. Otherwise, `false`

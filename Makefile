@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/16 23:07:10 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/26 14:24:28 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ define SRCS :=
 	graphics/c3d_game_render.c
 	graphics/c3d_raycast.c
 	graphics/c3d_game_make_raycasted_image.c
+	graphics/c3d_game_render_minimap.c
 endef
 SRCS := $(strip $(SRCS))
 
