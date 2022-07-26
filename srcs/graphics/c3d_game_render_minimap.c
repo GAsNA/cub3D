@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:17:35 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:51:16 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	set_minimap_color(t_game *self, int32_t x, int32_t y, t_rgba *rgba)
 	const size_t	tile_x = (size_t)(x / C3D_MINIMAP_SCALE)
 		+ (size_t)(self->player.pos.x + self->width / 2.0);
 	const size_t	tile_y = (size_t)(y / C3D_MINIMAP_SCALE)
-		+ (size_t)(self->player.pos.y + self->height / 2.0);
+		+ (size_t)(self->height / 2.0 - self->player.pos.y);
 
 	set_tile_color(self, tile_x, tile_y, rgba);
 }

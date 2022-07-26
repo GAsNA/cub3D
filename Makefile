@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/26 14:24:28 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/07/26 15:44:08 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,9 @@ define SRCS :=
 	graphics/c3d_raycast.c
 	graphics/c3d_game_make_raycasted_image.c
 	graphics/c3d_game_render_minimap.c
+
+	physics/c3d_game_move_player.c
+	physics/c3d_game_simulate.c
 endef
 SRCS := $(strip $(SRCS))
 
@@ -56,6 +59,7 @@ define HDRS :=
 	c3d_map.h
 	c3d_settings.h
 	c3d_types.h
+	c3d_physics.h
 
 	libft.h
 	mlx.h
