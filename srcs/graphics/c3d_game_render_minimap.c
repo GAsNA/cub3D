@@ -6,13 +6,12 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:14:34 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:17:35 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_game.h"
 #include "c3d_settings.h"
-#include <unistd.h>
 
 static inline uint8_t	blend(uint8_t dst, uint8_t src, uint8_t opacity)
 {
@@ -43,11 +42,11 @@ static void set_tile_color(t_game *self, size_t tile_x, size_t tile_y, t_rgba *r
 	rgba->blue = blend(rgba->blue, 0xff, opacity);
 }
 
-static void	set_minimap_color(t_game *self, size_t x, size_t y, t_rgba *rgba)
+static void	set_minimap_color(t_game *self, int32_t x, int32_t y, t_rgba *rgba)
 {
-	const size_t	tile_x = x / C3D_MINIMAP_SCALE
+	const size_t	tile_x = (size_t)(x / C3D_MINIMAP_SCALE)
 		+ (size_t)(self->player.pos.x + self->width / 2.0);
-	const size_t	tile_y = y / C3D_MINIMAP_SCALE
+	const size_t	tile_y = (size_t)(y / C3D_MINIMAP_SCALE)
 		+ (size_t)(self->player.pos.y + self->height / 2.0);
 
 	set_tile_color(self, tile_x, tile_y, rgba);
@@ -55,16 +54,16 @@ static void	set_minimap_color(t_game *self, size_t x, size_t y, t_rgba *rgba)
 
 void	c3d_game_render_minimap(t_game *self)
 {
-	const size_t	_x = C3D_WIDTH - C3D_MINIMAP_OFFSET;
-	const size_t	_y = C3D_HEIGHT - C3D_MINIMAP_OFFSET;
-	size_t			x;
-	size_t			y;
+	const int32_t	_x = C3D_WIDTH - C3D_MINIMAP_OFFSET;
+	const int32_t	_y = C3D_HEIGHT - C3D_MINIMAP_OFFSET;
+	int32_t			x;
+	int32_t			y;
 
-	y = (size_t)-1 - C3D_MINIMAP_RADIUS;
-	while ((ssize_t)++y < (ssize_t)C3D_MINIMAP_RADIUS)
+	y = -1 - C3D_MINIMAP_RADIUS;
+	while (++y < C3D_MINIMAP_RADIUS)
 	{
-		x = (size_t) - 1 - C3D_MINIMAP_RADIUS;
-		while ((ssize_t)++x < (ssize_t)C3D_MINIMAP_RADIUS)
+		x = -1 - C3D_MINIMAP_RADIUS;
+		while (++x < C3D_MINIMAP_RADIUS)
 		{
 			if (x * x + y * y >= C3D_MINIMAP_RADIUS * C3D_MINIMAP_RADIUS)
 				continue ;
