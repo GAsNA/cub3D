@@ -6,12 +6,13 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:51:16 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:51:06 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_game.h"
 #include "c3d_settings.h"
+#include <math.h>
 
 static inline uint8_t	blend(uint8_t dst, uint8_t src, uint8_t opacity)
 {
@@ -44,12 +45,20 @@ static void set_tile_color(t_game *self, size_t tile_x, size_t tile_y, t_rgba *r
 
 static void	set_minimap_color(t_game *self, int32_t x, int32_t y, t_rgba *rgba)
 {
-	const size_t	tile_x = (size_t)(x / C3D_MINIMAP_SCALE)
-		+ (size_t)(self->player.pos.x + self->width / 2.0);
-	const size_t	tile_y = (size_t)(y / C3D_MINIMAP_SCALE)
-		+ (size_t)(self->height / 2.0 - self->player.pos.y);
+	// const size_t	tile_x = (size_t)(x / C3D_MINIMAP_SCALE)
+	// 	+ (size_t)(self->player.pos.x + self->width / 2.0);
+	// const size_t	tile_y = (size_t)(y / C3D_MINIMAP_SCALE)
+	// 	+ (size_t)(self->height / 2.0 - self->player.pos.y);
+	float	pos_x;
+	float	pos_y;
 
-	set_tile_color(self, tile_x, tile_y, rgba);
+	pos_x = (float)x / (float)C3D_MINIMAP_SCALE + self->player.pos.x + (float)self->width / 2.0;
+	pos_y = (float)y / (float)C3D_MINIMAP_SCALE - self->player.pos.y + (float)self->height / 2.0;
+
+	pos_x = pos_x * cosf(self->player.angle) + pos_y * -sinf(self->player.angle);
+	pos_y = pos_x * sinf(self->player.angle) + pos_y * cosf(self->player.angle);
+
+	set_tile_color(self, (size_t)pos_x, (size_t)pos_y, rgba);
 }
 
 void	c3d_game_render_minimap(t_game *self)
