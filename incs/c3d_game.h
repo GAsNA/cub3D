@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 14:16:38 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:33:43 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,17 @@ typedef struct s_player
 {
 	t_vec2	pos;
 	float	angle;
+	float	velocity;
 }	t_player;
+
+/// Stores information about the inputs performed by the user.
+typedef struct s_input
+{
+	bool		forward;
+	bool		left;
+	bool		right;
+	bool		backward;
+}	t_input;
 
 /// Stores the state of the game.
 typedef struct s_game
@@ -67,6 +77,7 @@ typedef struct s_game
 	size_t		height;
 	t_tile		*tiles;
 
+	t_input		input;
 	t_player	player;
 }	t_game;
 

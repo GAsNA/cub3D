@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_game_loop_hook.c                               :+:      :+:    :+:   */
+/*   c3d_game_simulate.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:41:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:43:34 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/07/26 15:28:02 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/07/26 15:45:25 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3d_game.h"
-#include "c3d_graphics.h"
 #include "c3d_physics.h"
+#include "c3d_game.h"
 
-int	c3d_game_loop_hook(t_game *game)
+void	c3d_game_simulate(t_game *self)
 {
-	c3d_game_simulate(game);
-	c3d_game_render(game);
-	return (0);
+	c3d_game_move_player(self);
 }
