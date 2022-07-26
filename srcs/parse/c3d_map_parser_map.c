@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 05:05:10 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:56:48 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	set_player_spawn_point(t_map_parser *self, t_dir direction)
 	self->map->player.dir = direction;
 	self->map->player.x = self->walls.len;
 	self->map->player.y = self->lines.len;
-	self->walls.data[self->walls.len++] = 0;
+	self->walls.data[self->walls.len++] = C3D_TILE_FLOOR;
 	return (true);
 }
 
@@ -60,9 +60,9 @@ bool	absorbe_char(t_map_parser *self, uint8_t b)
 {
 	ft_vec_reserve((t_vec *)&self->walls, 1, sizeof(uint8_t));
 	if (b == ' ' || b == '0')
-		self->walls.data[self->walls.len++] = 0;
+		self->walls.data[self->walls.len++] = C3D_TILE_FLOOR;
 	else if (b == '1')
-		self->walls.data[self->walls.len++] = 1;
+		self->walls.data[self->walls.len++] = C3D_TILE_WALL;
 	else if (b == 'N')
 		return (set_player_spawn_point(self, C3D_DIR_NORTH));
 	else if (b == 'E')
@@ -78,7 +78,7 @@ bool	absorbe_char(t_map_parser *self, uint8_t b)
 		c3d_map_parser_push_error(self,
 			"line {ulong}: character '{c?}' not expected in the map",
 			self->line, b);
-		self->walls.data[self->walls.len++] = 0;
+		self->walls.data[self->walls.len++] = C3D_TILE_FLOOR;
 		return (false);
 	}
 	return (true);

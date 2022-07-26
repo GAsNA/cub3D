@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/16 22:01:02 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:53:13 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <stddef.h>
 # include <stdint.h>
 # include <stdbool.h>
+
+# define C3D_TILE_WALL 0U
+# define C3D_TILE_FLOOR 1U
+# define C3D_TILE_TRACK 2U
+
+/// A tile.
+typedef uint8_t	t_tile;
 
 // Stores a fully parsed map.
 typedef struct s_map
@@ -33,6 +40,7 @@ typedef struct s_map
 
 	size_t		width;
 	size_t		height;
+	t_tile		*tiles;
 
 	struct s_map_player
 	{

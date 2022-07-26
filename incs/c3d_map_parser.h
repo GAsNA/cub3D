@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 16:56:12 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 20:29:27 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 12:52:41 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,12 @@ typedef struct s_map_parser
 
 	t_map		*map;
 
-	size_t		width;
-	size_t		height;
-
 	bool		has_floor_color;
 	bool		has_ceiling_color;
 
 	struct s_map_parser_walls
 	{
-		uint8_t	*data;
+		t_tile	*data;
 		size_t	len;
 		size_t	cap;
 	}	walls;
@@ -40,7 +37,7 @@ typedef struct s_map_parser
 	{
 		struct s_map_parser_line
 		{
-			uint8_t	*line;
+			t_tile	*line;
 			size_t	len;
 		}		*data;
 		size_t	len;
