@@ -5,3 +5,7 @@
 /libft/libft.a
 
 /.vscode
+
+/minilibx/obj
+/minilibx/libmlx.a
+/minilibx/libmlx_Linux.a
