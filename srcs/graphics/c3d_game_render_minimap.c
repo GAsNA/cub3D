@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:06:25 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:14:34 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ static inline uint8_t	blend(uint8_t dst, uint8_t src, uint8_t opacity)
 	return ((uint8_t)(scaled_rslt / 255));
 }
 
-static void	set_minimap_color(t_game *self, size_t x, size_t y, t_rgba *rgba)
+static void set_tile_color(t_game *self, size_t tile_x, size_t tile_y, t_rgba *rgba)
 {
-	const size_t	tile_x = x / C3D_MINIMAP_SCALE + (size_t)self->player.pos.x;
-	const size_t	tile_y = y / C3D_MINIMAP_SCALE + (size_t)self->player.pos.y;
-	const size_t	index = tile_y * self->width + tile_x;
 	uint8_t			opacity;
+	const size_t	index = tile_y * self->width + tile_x;
 
 	if (tile_x >= self->width || tile_y >= self->height
 		|| self->tiles[index] == C3D_TILE_VOID
@@ -43,6 +41,16 @@ static void	set_minimap_color(t_game *self, size_t x, size_t y, t_rgba *rgba)
 	rgba->red = blend(rgba->red, 0xff, opacity);
 	rgba->green = blend(rgba->green, 0xff, opacity);
 	rgba->blue = blend(rgba->blue, 0xff, opacity);
+}
+
+static void	set_minimap_color(t_game *self, size_t x, size_t y, t_rgba *rgba)
+{
+	const size_t	tile_x = x / C3D_MINIMAP_SCALE
+		+ (size_t)(self->player.pos.x + self->width / 2.0);
+	const size_t	tile_y = y / C3D_MINIMAP_SCALE
+		+ (size_t)(self->player.pos.y + self->height / 2.0);
+
+	set_tile_color(self, tile_x, tile_y, rgba);
 }
 
 void	c3d_game_render_minimap(t_game *self)
@@ -64,4 +72,8 @@ void	c3d_game_render_minimap(t_game *self)
 				&self->canvas.data[self->canvas.width * (_y + y) + _x + x]);
 		}
 	}
+	self->canvas.data[self->canvas.width * _y + _x]
+		= (t_rgba){{{0, 0, 255}}, 0};
+	self->canvas.data[self->canvas.width * (_y + 1) + _x]
+		= (t_rgba){{{0, 0, 255}}, 0};
 }

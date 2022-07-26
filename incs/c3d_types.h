@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:46:18 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/17 08:50:45 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:13:35 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ typedef struct s_vec3
 // An RGB color.
 typedef struct s_rgb
 {
-	uint8_t	red;
-	uint8_t	green;
 	uint8_t	blue;
+	uint8_t	green;
+	uint8_t	red;
 }	t_rgb;
 
 /// An RGBA color.
@@ -45,9 +45,9 @@ typedef struct s_rgba
 	{
 		struct
 		{
-			uint8_t	red;
-			uint8_t	green;
 			uint8_t	blue;
+			uint8_t	green;
+			uint8_t	red;
 		};
 		t_rgb		rgb;
 	};
