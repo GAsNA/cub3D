@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 19:15:33 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/07/27 11:43:57 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 /// The force applied to the player when they wish to accelerate.
 # define C3D_PLAYER_FORCE 0.1f
 /// The angle added to the player each frame when they want to turn.
-# define C3D_PLAYER_TURN 0.08f
+# define C3D_PLAYER_TURN 0.03f
 /// The force of the player's brakes.
 # define C3D_PLAYER_BREAK 0.05f
 /// The force applied to the player when they wish to go backward.
