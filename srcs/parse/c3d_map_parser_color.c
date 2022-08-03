@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:18:19 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/15 20:48:09 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/08/03 20:29:29 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ static bool	parse_uint8(t_map_parser *self, uint8_t *result, char sep)
 	i = 0;
 	while (ft_reader_get(&self->reader, i, &b) && b != '\n' && b != sep)
 		i++;
+	if (i == 0)
+		return (
+			c3d_map_parser_push_error(self, "line {ulong}: no color provided",
+			self->line), false);
 	j = i;
 	if (b == sep)
 		i++;

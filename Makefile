@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/07/26 19:11:41 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/08/03 16:29:30 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,15 +85,17 @@ all: $(NAME)
 
 clean:
 	@rm -vf $(OBJ_FILES)
-	@make -C libft fclean
-	@make -C minilibx clean
+	@$(MAKE) -C libft fclean
+	@$(MAKE) -C minilibx clean
 .PHONY: clean
 
 fclean: clean
 	@rm -vf $(NAME)
 .PHONY: fclean
 
-re: fclean all
+re:
+	@$(MAKE) --no-print-directory clean
+	@$(MAKE) --no-print-directory all
 .PHONY: re
 
 # ============================================================================ #
@@ -104,10 +106,10 @@ $(NAME): $(OBJ_FILES) $(LIBS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS) -lXext -lX11 -lm
 
 libft/libft.a:
-	@make -C libft libft.a
+	@$(MAKE) -C libft libft.a
 
 minilibx/libmlx_Linux.a:
-	@make -C minilibx
+	@$(MAKE) -C minilibx
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -vp $(dir $@)

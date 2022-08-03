@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 15:49:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/10 16:05:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/08/03 16:23:44 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static size_t	next_escaped(t_str s, t_str *escaped)
 	i = 0;
 	while (i < s.len)
 	{
-		state = ft_utf8_decode(state, &codep, s.data[i]);
+		state = ft_utf8_decode(state, &codep, (unsigned char)s.data[i]);
 		if (state == 1)
 		{
 			*escaped = (t_str){"\ufffd", 3};
@@ -63,6 +63,7 @@ bool	__ft_fmt_handle_debug_str(t_writer w, va_list args)
 		if (!w.write(w.self, s.data, count)
 			|| !w.write(w.self, escaped.data, escaped.len))
 			return (false);
+		count += ft_utf8_char_len(s.data[count]);
 		s.data += count;
 		s.len -= count;
 	}
