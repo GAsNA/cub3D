@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 18:55:21 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:20:44 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ static inline uint8_t	blend(uint8_t dst, uint8_t src, uint8_t opacity)
 	return ((uint8_t)(scaled_rslt / 255));
 }
 
-static void set_tile_color(t_game *self, size_t tile_x, size_t tile_y, t_rgba *rgba)
+static void	set_tile_color(
+				t_game *self,
+				size_t tile_x,
+				size_t tile_y,
+				t_rgba *rgba)
 {
 	uint8_t			opacity;
 	const size_t	index = tile_y * self->width + tile_x;
@@ -43,7 +47,11 @@ static void set_tile_color(t_game *self, size_t tile_x, size_t tile_y, t_rgba *r
 	rgba->blue = blend(rgba->blue, 0xff, opacity);
 }
 
-static void	set_minimap_color(t_game *self, int32_t map_x, int32_t map_y, t_rgba *rgba)
+static void	set_minimap_color(
+				t_game *self,
+				int32_t map_x,
+				int32_t map_y,
+				t_rgba *rgba)
 {
 	const float	a = PI / 2.0 - self->player.angle;
 	const float	local_x = (float)map_x / (float)C3D_MINIMAP_SCALE;

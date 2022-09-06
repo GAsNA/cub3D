@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:36:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 13:40:27 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:19:31 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,10 @@ static bool	absorbe_char(t_map_parser *self, uint8_t b)
 		new_line(self);
 	else
 	{
-		c3d_map_parser_push_error(self,
-			"line {ulong}: character '{c?}' not expected in the map",
-			self->line, b);
 		self->walls.data[self->walls.len++] = C3D_TILE_FLOOR;
-		return (false);
+		return (c3d_map_parser_push_error(self,
+				"line {ulong}: character '{c?}' not expected in the map",
+				self->line, b), false);
 	}
 	return (true);
 }

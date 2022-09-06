@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 19:18:19 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/08/03 20:29:29 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:18:13 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,8 @@ static bool	parse_uint8(t_map_parser *self, uint8_t *result, char sep)
 	while (ft_reader_get(&self->reader, i, &b) && b != '\n' && b != sep)
 		i++;
 	if (i == 0)
-		return (
-			c3d_map_parser_push_error(self, "line {ulong}: no color provided",
-			self->line), false);
+		return (c3d_map_parser_push_error(self,
+				"line {ulong}: no color provided", self->line), false);
 	j = i;
 	if (b == sep)
 		i++;
@@ -52,12 +51,10 @@ static bool	parse_uint8(t_map_parser *self, uint8_t *result, char sep)
 		j--;
 	str = (t_str){(void *)self->reader.data + self->reader.con, j};
 	if (!str_to_uint8(str, result))
-		return (
-			c3d_map_parser_push_error(
+		return (c3d_map_parser_push_error(
 				self, "line {ulong}: '{str?}' is not a valid byte",
 				self->line, str), ft_reader_consume(&self->reader, i), false);
-	ft_reader_consume(&self->reader, i);
-	return (true);
+	return (ft_reader_consume(&self->reader, i), true);
 }
 
 bool	c3d_map_parser_color(

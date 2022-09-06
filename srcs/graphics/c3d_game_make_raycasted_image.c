@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:59:24 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/17 08:51:11 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:19:52 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ inline static float	get_angle(float center, uint32_t column)
 	return (center - C3D_FOV / 2.0f + C3D_FOV * percent);
 }
 
-inline static void set_pixel(t_img *img, uint32_t x, uint32_t y, t_rgb rgb)
+inline static void	set_pixel(t_img *img, uint32_t x, uint32_t y, t_rgb rgb)
 {
 	if (x >= img->width || y >= img->height)
 		return ;
