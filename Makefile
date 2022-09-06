@@ -6,15 +6,17 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/08/03 16:29:30 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/09/06 14:04:09 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Le nom du programme c'est bien "cub3D" avec un D majuscule. T'avais raison
 # depuis le début x)
-NAME := cub3D
+NAME   := cub3D
 CFLAGS :=
-CC := /bin/clang
+CC     := /bin/clang
+CFLAGS := -Wall -Wextra -g3 -D DEBUG
+LFLAGS := -lXext -lX11 -lm
 
 define SRCS :=
 	main.c
@@ -69,14 +71,6 @@ LIBS := $(strip $(LIBS))
 OBJ_FILES := $(patsubst %.c,$(OBJS_DIR)/%.o,$(SRCS))
 DEP_FILES := $(OBJ_FILES:.o=.d)
 
-CFLAGS := $(CFLAGS) -Wall -Wextra
-
-ifdef DEBUG
-	CFLAGS := $(CFLAGS) -g3 -D DEBUG
-else
-	CFLAGS := $(CFLAGS) -Werror
-endif
-
 # ============================================================================ #
 #                                 Functions                                    #
 # ============================================================================ #
@@ -103,16 +97,20 @@ re:
 # ============================================================================ #
 
 $(NAME): $(OBJ_FILES) $(LIBS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_FILES) $(LIBS) -lXext -lX11 -lm
+	@echo "linking..."
+	@$(CC) -o $(NAME) $(OBJ_FILES) $(LIBS) $(LFLAGS)
 
 libft/libft.a:
+	@echo "creating 'libft.a'..."
 	@$(MAKE) -C libft libft.a
 
 minilibx/libmlx_Linux.a:
+	@echo "creating 'mlx.a'..."
 	@$(MAKE) -C minilibx
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	@echo "compiling '$@'..."
 	@mkdir -vp $(dir $@)
-	$(CC) $(CFLAGS) -MMD -I $(INCS_DIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) -MMD -I $(INCS_DIR) -o $@ -c $<
 
 -include $(DEP_FILES)
