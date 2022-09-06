@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/27 11:43:57 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:25:18 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 /// The number of physical pixel per pixel of the game.
 # define C3D_PIXEL_SIZE 6
 
-/// The angle of view.
-# define C3D_FOV 90.0f
 /// The height of the horizon.
 # define C3D_HORIZON 45
 /// The height of a cube that is just on the player.

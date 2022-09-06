@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:59:24 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/06 14:19:52 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/06 15:27:04 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 #include "c3d_graphics.h"
 #include "c3d_types.h"
 #include "c3d_settings.h"
-
-inline static float	get_angle(float center, uint32_t column)
-{
-	float	percent;
-
-	percent = (float)column / (float)C3D_WIDTH;
-	return (center - C3D_FOV / 2.0f + C3D_FOV * percent);
-}
 
 inline static void	set_pixel(t_img *img, uint32_t x, uint32_t y, t_rgb rgb)
 {
@@ -65,15 +57,30 @@ inline static void	make_hit_column(t_game *game, t_hit *hit, size_t column)
 		make_column(game, &game->south_texture, column, s);
 }
 
+inline static void	get_origin_dir(
+						t_game *game,
+						uint32_t x,
+						t_vec2 *origin,
+						t_vec2 *dir)
+{
+	(void)game;
+	(void)x;
+	(void)origin;
+	(void)dir;
+}
+
 void	c3d_game_make_raycasted_image(t_game *game)
 {
 	uint32_t	i;
 	t_hit		h;
+	t_vec2		origin;
+	t_vec2		dir;
 
 	i = 0;
 	while (i < game->canvas.width)
 	{
-		if (c3d_raycast(game->player.pos, get_angle(game->player.angle, i), &h))
+		get_origin_dir(game, i, &origin, &dir);
+		if (c3d_raycast(origin, dir, &h))
 			make_hit_column(game, &h, i);
 		else
 			make_column(game, NULL, i, 0);
