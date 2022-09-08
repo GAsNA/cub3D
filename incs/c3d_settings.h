@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/06 15:25:18 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:49:53 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,7 @@
 # define C3D_PLAYER_BREAK 0.05f
 /// The force applied to the player when they wish to go backward.
 # define C3D_PLAYER_BW_FORCE 0.02f
+
+# define C3D_FOV 0.66f
 
 #endif

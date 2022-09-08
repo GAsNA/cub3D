@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/06 14:20:44 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:37:03 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	set_minimap_color(
 				int32_t map_y,
 				t_rgba *rgba)
 {
-	const float	a = PI / 2.0 - self->player.angle;
+	const float	a = PI / 2.0f + self->player.angle;
 	const float	local_x = (float)map_x / (float)C3D_MINIMAP_SCALE;
 	const float	local_y = (float)map_y / (float)C3D_MINIMAP_SCALE;
 	float		x;
@@ -61,8 +61,8 @@ static void	set_minimap_color(
 
 	x = local_x * cosf(a) - local_y * sinf(a);
 	y = local_x * sinf(a) + local_y * cosf(a);
-	x += self->player.pos.x + (float)self->width / 2.0;
-	y += (float)self->height / 2.0 - self->player.pos.y;
+	x += self->player.pos.x;
+	y += self->player.pos.y;
 	set_tile_color(self, (size_t)x, (size_t)y, rgba);
 }
 

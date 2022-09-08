@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:46:18 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 18:46:53 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:17:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdint.h>
 
-#define PI 3.1415
+#define PI 3.141592653589793238462643383279502884197169399375105820974944592307f
 
 // A 2D position.
 typedef struct s_vec2
@@ -64,12 +64,5 @@ typedef enum e_dir
 	C3D_DIR_WEST = 4,
 	C3D_DIR_SOUTH = 8,
 }	t_dir;
-
-// Describes a hit.
-typedef struct s_hit
-{
-	float	distance;
-	t_dir	dir;
-}	t_hit;
 
 #endif

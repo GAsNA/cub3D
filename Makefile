@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/09/06 14:04:09 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/09/08 17:58:53 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,10 @@ define SRCS :=
 
 	graphics/c3d_game_scale_canvas.c
 	graphics/c3d_game_render.c
-	graphics/c3d_raycast.c
 	graphics/c3d_game_make_raycasted_image.c
 	graphics/c3d_game_render_minimap.c
+	graphics/c3d_create_ray.c
+	graphics/c3d_cast_ray.c
 
 	physics/c3d_game_move_player.c
 	physics/c3d_game_simulate.c

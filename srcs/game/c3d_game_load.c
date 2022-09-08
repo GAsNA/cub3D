@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 18:46:54 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/08 18:30:40 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ inline static float	dir_to_angle(t_dir dir)
 	if (dir == C3D_DIR_EAST)
 		return (0.0f);
 	if (dir == C3D_DIR_NORTH)
-		return (PI / 2.0f);
+		return (3.0f * PI / 2.0f);
 	if (dir == C3D_DIR_WEST)
 		return (PI);
 	if (dir == C3D_DIR_SOUTH)
-		return (PI / 2.0f + PI);
+		return (PI / 2.0f);
 	return (0.0f);
 }
 
@@ -68,8 +68,8 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	load_images(game, map);
 	game->ceiling_color = map->ceiling_color;
 	game->floor_color = map->floor_color;
-	game->player.pos.x = (float)map->player.x - (float)map->width / 2.0f;
-	game->player.pos.y = (float)map->height / 2.0f - (float)map->player.y;
+	game->player.pos.x = (float)map->player.x;
+	game->player.pos.y = (float)map->player.y;
 	game->player.angle = dir_to_angle(map->player.dir);
 	game->width = map->width;
 	game->height = map->height;
