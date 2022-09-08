@@ -6,27 +6,40 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/08 19:02:27 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/09 00:46:01 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include <math.h>
 #include "c3d_raycast.h"
 #include "c3d_settings.h"
 
 static void	populate_hit(t_ray *ray, t_hit *hit, bool side)
 {
+	float	t;
+
 	if (side)
 	{
-		hit->distance = ((float)ray->y - ray->origin.y
-			+ (1.0f - (float)ray->step_y) / 2.0f) / ray->dir.y;
-		hit->dir = C3D_DIR_SOUTH;
+		t = (float)((1 - ray->step_y) / 2);
+		hit->distance = ((float)ray->y - ray->origin.y + t) / ray->dir.y;
+		if (ray->dir.y < 0)
+			hit->dir = C3D_DIR_NORTH;
+		else
+			hit->dir = C3D_DIR_SOUTH;
+		hit->tex_x = (float)ray->y + t;
+		hit->tex_x -= floorf(hit->tex_x);
 	}
 	else
 	{
-		hit->distance = ((float)ray->x - ray->origin.x
-			+ (1.0f - (float)ray->step_x) / 2.0f) / ray->dir.x;
-		hit->dir = C3D_DIR_WEST;
+		t = (float)((1 - ray->step_x) / 2.0f);
+		hit->distance = ((float)ray->x - ray->origin.x + t) / ray->dir.x;
+		if (ray->dir.x < 0)
+			hit->dir = C3D_DIR_WEST;
+		else
+			hit->dir = C3D_DIR_EAST;
+		hit->tex_x = (float)ray->x + t;
+		hit->tex_x -= floorf(hit->tex_x);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:14:46 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:56:31 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/08 19:43:22 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_hit
 {
 	float	distance;
 	t_dir	dir;
+	float	tex_x;
 }	t_hit;
 
 void	c3d_create_ray(t_ray *ray, t_vec2 pos, float angle, uint32_t x);

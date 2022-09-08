@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:14:32 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:58:43 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/08 21:41:48 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 void	c3d_create_ray(t_ray *ray, t_vec2 pos, float angle, uint32_t x)
 {
-	const float		cam_x = 2.0f * (x / (float)C3D_WIDTH) - 1.0f;
+	const float		cam_x = 1.0f - 2.0f * ((float)x / (float)C3D_WIDTH);
 	const t_vec2	vecdir = (t_vec2){cosf(angle), sinf(angle)};
 	const t_vec2	planepos
-		= (t_vec2){vecdir.y * C3D_FOV, -vecdir.x * C3D_FOV};
+		= (t_vec2){vecdir.y * C3D_CAMERA_PLANE, -vecdir.x * C3D_CAMERA_PLANE};
 
 	// ray_calculs
 	ray->dir.x = vecdir.x + planepos.x * cam_x;
