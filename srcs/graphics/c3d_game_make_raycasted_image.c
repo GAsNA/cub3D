@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:59:24 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/09 00:31:38 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:52:39 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,19 +41,24 @@ inline static void	make_column(
 					float img_x)
 {
 	const uint32_t	column = column_start_end[0];
-	const uint32_t	size = column_start_end[2] - column_start_end[1];
+	int32_t			true_start = (int32_t)column_start_end[1];
+	const float		size = (float)((int32_t)column_start_end[2] - (int32_t)column_start_end[1]);
 	size_t			i;
 
+	if ((int32_t)column_start_end[1] < 0)
+			column_start_end[1] = 0;
+	if (column_start_end[2] > C3D_HEIGHT)
+		column_start_end[2] = C3D_HEIGHT;
 	i = 0;
 	while (i < C3D_HORIZON)
 		set_pixel(&game->canvas, column, i++, game->ceiling_color);
 	while (i < C3D_HEIGHT)
 		set_pixel(&game->canvas, column, i++, game->floor_color);
-	i = column_start_end[1] - 1;
+	i = (size_t)column_start_end[1] - 1;
 	if (img)
 		while (++i < column_start_end[2])
 			set_pixel(&game->canvas, column, i, sample_image(img, img_x,
-				(float)(i - column_start_end[1]) / (float)size));
+				(float)(i - true_start) / size));
 }
 
 inline static void	make_hit_column(t_game *game, t_hit *hit, size_t column)
@@ -63,12 +68,8 @@ inline static void	make_hit_column(t_game *game, t_hit *hit, size_t column)
 
 	column_start_end[0] = column;
 	column_start_end[1] = C3D_HORIZON
-		- (uint32_t)(percent * (float)C3D_CUBE_HEIGHT);
-	if ((int32_t)column_start_end[1] < 0)
-		column_start_end[1] = 0;
-	column_start_end[2] = C3D_HORIZON + (uint32_t)(percent * (float)C3D_HEIGHT);
-	if (column_start_end[2] > C3D_HEIGHT)
-		column_start_end[2] = C3D_HEIGHT;
+		- (int32_t)(percent * (float)C3D_HEIGHT);
+	column_start_end[2] = C3D_HORIZON + (int32_t)(percent * (float)C3D_HEIGHT);
 	if (hit->dir == C3D_DIR_NORTH)
 		make_column(game, &game->north_texture, column_start_end, hit->tex_x);
 	else if (hit->dir == C3D_DIR_EAST)
@@ -81,12 +82,13 @@ inline static void	make_hit_column(t_game *game, t_hit *hit, size_t column)
 
 void	c3d_game_make_raycasted_image(t_game *game)
 {
-	uint32_t	i[2];
+	uint32_t	i[3];
 	t_ray		r;
 	t_hit		h;
 
 	i[0] = 0;
 	i[1] = 0;
+	i[2] = 0;
 	while (i[0] < game->canvas.width)
 	{
 		c3d_create_ray(&r, game->player.pos, game->player.angle, i[0]);
