@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/10 19:42:15 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:07:14 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	populate_hit(t_ray *ray, t_hit *hit, bool side)
 			hit->dir = C3D_DIR_NORTH;
 		else
 			hit->dir = C3D_DIR_SOUTH;
-		hit->tex_x = ray->origin.y + hit->distance * ray->dir.y;
+		hit->tex_x = ray->origin.x + hit->distance * ray->dir.x;
 		hit->tex_x -= floorf(hit->tex_x);
 	}
 	else
@@ -34,7 +34,7 @@ static void	populate_hit(t_ray *ray, t_hit *hit, bool side)
 			hit->dir = C3D_DIR_WEST;
 		else
 			hit->dir = C3D_DIR_EAST;
-		hit->tex_x = ray->origin.x + hit->distance * ray->dir.x;
+		hit->tex_x = ray->origin.y + hit->distance * ray->dir.y;
 		hit->tex_x -= floorf(hit->tex_x);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:59:24 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/10 19:52:39 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:53:40 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ inline static void	make_column(
 		set_pixel(&game->canvas, column, i++, game->floor_color);
 	i = (size_t)column_start_end[1] - 1;
 	if (img)
-		while (++i < column_start_end[2])
+		while (++i < (size_t)column_start_end[2])
 			set_pixel(&game->canvas, column, i, sample_image(img, img_x,
 				(float)(i - true_start) / size));
 }

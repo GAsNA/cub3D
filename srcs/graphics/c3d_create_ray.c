@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:14:32 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/09 20:09:44 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/10 19:56:33 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	c3d_create_ray(t_ray *ray, t_vec2 pos, float angle, uint32_t x)
 		= (t_vec2){vecdir.y * C3D_CAMERA_PLANE, -vecdir.x * C3D_CAMERA_PLANE};
 
 	// ray_calculs
+	ray->origin = pos;
 	ray->dir.x = vecdir.x + planepos.x * cam_x;
 	ray->dir.y = vecdir.y + planepos.y * cam_x;
+	ray->x = (uint32_t)pos.x;
+	ray->y = (uint32_t)pos.y;
 	ray->delta.x = sqrtf(1.0f + (ray->dir.y * ray->dir.y)
 		/ (ray->dir.x * ray->dir.x));
 	ray->delta.y = sqrtf(1.0f + (ray->dir.x * ray->dir.x)
 		/ (ray->dir.y * ray->dir.y));
-	ray->origin = pos;
-	ray->x = (uint32_t)pos.x;
-	ray->y = (uint32_t)pos.y;
 
 	// get_stop_for_ray
 	if (ray->dir.x < 0.0f)
