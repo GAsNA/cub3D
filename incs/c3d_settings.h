@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 13:10:09 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:05:58 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 /// The squared radius of the minimap.
 # define C3D_MINIMAP_RADIUS 100
 
+/// The diameter of the stiring wheel, in pixels.
+# define C3D_WHEEL_SIZE 300
+/// A factor to make the wheel turn.
+# define C3D_WHEEL_FACTOR 5.0f
+
 /// The speed at which the game is played.
 /// This value can be adjusted if the computer is too fast.
 # define C3D_DELTA_TIME 0.2f
@@ -39,12 +44,15 @@
 /// The angle added to the player each frame when they want to turn.
 # define C3D_PLAYER_TURN 0.1f
 /// The amount of "time" the player takes to turn the wheel.
-# define C3D_PLAYER_TURN_TIME 0.08f
+# define C3D_PLAYER_TURN_TIME 0.06f
 /// The force of the player's brakes.
 # define C3D_PLAYER_BREAK 0.05f
 /// The force applied to the player when they wish to go backward.
 # define C3D_PLAYER_BW_FORCE 0.02f
 
+/// The size of the camera plane.
+///
+/// This value roughly matches the effective Field Of View.
 # define C3D_CAMERA_PLANE 0.9f
 
 #endif

@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_game_render.c                                  :+:      :+:    :+:   */
+/*   c3d_game_free_car_textures.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:37:57 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 13:30:53 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/09/14 13:20:04 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/09/14 13:40:32 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3d_game.h"
-#include "c3d_graphics.h"
 #include "mlx.h"
-#include "libft.h"
+#include "c3d_game.h"
 
-void	c3d_game_render(t_game *game)
+void	c3d_game_free_car_background_texture(t_game *game)
 {
-	c3d_game_make_raycasted_image(game);
-	c3d_game_render_car(game);
-	c3d_game_render_minimap(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->canvas.raw, 0, 0);
+	mlx_destroy_image(game->mlx, game->car_background_texture.raw);
+}
+
+void	c3d_game_free_car_wheel_texture(t_game *game)
+{
+	mlx_destroy_image(game->mlx, game->car_wheel_texture.raw);
 }

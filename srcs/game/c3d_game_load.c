@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:30:40 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:43:27 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include "c3d_game.h"
 #include "mlx.h"
 #include <stdlib.h>
+
+#define CAR_BG_PATH "assets/car-background.xpm"
+#define CAR_WHEEL_PATH "assets/car-wheel.xpm"
 
 static void	load_images(t_game *game, const t_map *map)
 {
@@ -25,6 +28,10 @@ static void	load_images(t_game *game, const t_map *map)
 	ft_unwind(game, c3d_game_free_west_texture);
 	c3d_img_load_file(game->mlx, map->east_texture, &game->east_texture);
 	ft_unwind(game, c3d_game_free_east_texture);
+	c3d_img_load_file(game->mlx, CAR_BG_PATH, &game->car_background_texture);
+	ft_unwind(game, c3d_game_free_car_background_texture);
+	c3d_img_load_file(game->mlx, CAR_WHEEL_PATH, &game->car_wheel_texture);
+	ft_unwind(game, c3d_game_free_car_wheel_texture);
 	c3d_img_create(game->mlx, C3D_WIDTH, C3D_HEIGHT, &game->canvas);
 	ft_unwind(game, c3d_game_free_canvas);
 }
@@ -75,6 +82,8 @@ void	c3d_game_unload(t_game *game)
 	mlx_destroy_image(game->mlx, game->east_texture.raw);
 	mlx_destroy_image(game->mlx, game->west_texture.raw);
 	mlx_destroy_image(game->mlx, game->canvas.raw);
+	mlx_destroy_image(game->mlx, game->car_background_texture.raw);
+	mlx_destroy_image(game->mlx, game->car_wheel_texture.raw);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 }
