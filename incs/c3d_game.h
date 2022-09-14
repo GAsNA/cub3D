@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:33:43 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/14 13:03:02 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_player
 {
 	t_vec2	pos;
 	float	angle;
+
+	float	delta_angle;
 	float	velocity;
 }	t_player;
 
