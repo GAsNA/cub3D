@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 13:40:40 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:16:42 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct s_player
 
 	float	delta_angle;
 	float	velocity;
+
+	t_vec2	look;
 }	t_player;
 
 /// Stores information about the inputs performed by the user.
@@ -56,6 +58,11 @@ typedef struct s_input
 	bool		left;
 	bool		right;
 	bool		backward;
+
+	bool		look_up;
+	bool		look_down;
+	bool		look_left;
+	bool		look_right;
 }	t_input;
 
 /// Stores the state of the game.

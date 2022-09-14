@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 14:05:58 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:29:32 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@
 # define C3D_PLAYER_BREAK 0.05f
 /// The force applied to the player when they wish to go backward.
 # define C3D_PLAYER_BW_FORCE 0.02f
+
+/// The "speed" at which the player looks when using the array keys.
+# define C3D_LOOK_SPEED 0.015f
+/// The amount of distance the player can look up/down.
+# define C3D_LOOK_V_AMOUNT 80.0f
+/// The amount of distance the player can look left/right.
+# define C3D_LOOK_H_AMOUNT 30.0f
 
 /// The size of the camera plane.
 ///
