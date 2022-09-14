@@ -17,8 +17,3 @@ void	c3d_game_free_canvas(t_game *game)
 {
 	mlx_destroy_image(game->mlx, game->canvas.raw);
 }
-
-void	c3d_game_free_final_canvas(t_game *game)
-{
-	mlx_destroy_image(game->mlx, game->final_canvas.raw);
-}

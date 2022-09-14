@@ -27,12 +27,6 @@ static void	load_images(t_game *game, const t_map *map)
 	ft_unwind(game, c3d_game_free_east_texture);
 	c3d_img_create(game->mlx, C3D_WIDTH, C3D_HEIGHT, &game->canvas);
 	ft_unwind(game, c3d_game_free_canvas);
-	c3d_img_create(
-		game->mlx,
-		C3D_WIDTH * C3D_PIXEL_SIZE,
-		C3D_HEIGHT * C3D_PIXEL_SIZE,
-		&game->final_canvas);
-	ft_unwind(game, c3d_game_free_final_canvas);
 }
 
 inline static float	dir_to_angle(t_dir dir)
@@ -57,11 +51,7 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	if (!game->mlx)
 		ft_unwind_panic("failed to initialize MiniLibX");
 	unwind_index = ft_unwind(game, c3d_game_destroy_mlx);
-	game->win = mlx_new_window(
-			game->mlx,
-			C3D_WIDTH * C3D_PIXEL_SIZE,
-			C3D_HEIGHT * C3D_PIXEL_SIZE,
-			"Cub3D");
+	game->win = mlx_new_window(game->mlx, C3D_WIDTH, C3D_HEIGHT, "Cub3D");
 	if (!game->mlx)
 		ft_unwind_panic("failed to create a window");
 	ft_unwind(game, c3d_game_destroy_window);
@@ -85,7 +75,6 @@ void	c3d_game_unload(t_game *game)
 	mlx_destroy_image(game->mlx, game->east_texture.raw);
 	mlx_destroy_image(game->mlx, game->west_texture.raw);
 	mlx_destroy_image(game->mlx, game->canvas.raw);
-	mlx_destroy_image(game->mlx, game->final_canvas.raw);
 	mlx_destroy_display(game->mlx);
 	free(game->mlx);
 }

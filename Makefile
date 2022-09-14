@@ -43,7 +43,6 @@ define SRCS :=
 	game/c3d_game_free_canvas.c
 	game/c3d_game_loop_hook.c
 
-	graphics/c3d_game_scale_canvas.c
 	graphics/c3d_game_render.c
 	graphics/c3d_game_make_raycasted_image.c
 	graphics/c3d_game_render_minimap.c

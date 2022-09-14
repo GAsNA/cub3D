@@ -15,9 +15,6 @@
 
 # include "c3d_game.h"
 
-/// Copies the content of `canvas` to `final_canvas`, upscaling it properly.
-void	c3d_game_scale_canvas(t_game *game);
-
 /// Renders the game to the window.
 void	c3d_game_render(t_game *game);
 

@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:32:29 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/10 20:13:34 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:15:59 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 void	c3d_game_move_player(t_game *game)
 {
 	float	force;
-	float	turn_amount;
 
 	force = 0.0f;
 	if (game->input.forward && !game->input.backward)
@@ -26,13 +25,12 @@ void	c3d_game_move_player(t_game *game)
 	if (game->input.backward && !game->input.forward)
 	{
 		if (game->player.velocity > 0.1f)
-			force -= game->player.velocity * C3D_PLAYER_BREAK;
+			force -= game->player.velocity * C3D_PLAYER_BREAK * C3D_DELTA_TIME;
 		else
 			force -= C3D_PLAYER_BW_FORCE * C3D_DELTA_TIME;
 	}
 	force -= game->player.velocity * C3D_PLAYER_DRAG;
-	turn_amount = (float)game->input.right - (float)game->input.left;
-	game->player.angle += turn_amount * C3D_PLAYER_TURN * game->player.velocity * C3D_DELTA_TIME;
+	game->player.angle += ((float)game->input.right - (float)game->input.left) * C3D_PLAYER_TURN * game->player.velocity * C3D_DELTA_TIME;
 	game->player.velocity += force * C3D_DELTA_TIME;
 	game->player.pos.x += game->player.velocity
 		* cosf(game->player.angle) * C3D_DELTA_TIME;

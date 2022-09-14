@@ -71,7 +71,6 @@ typedef struct s_game
 	t_rgb		ceiling_color;
 
 	t_img		canvas;
-	t_img		final_canvas;
 
 	size_t		width;
 	size_t		height;

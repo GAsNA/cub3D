@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/10 20:13:54 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/10 20:14:59 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@
 # define C3D_WIDTH 2000
 /// The height, in pixels, of the game.
 # define C3D_HEIGHT 1000
-
-/// The number of physical pixel per pixel of the game.
-# define C3D_PIXEL_SIZE 1
 
 /// The height of the horizon.
 # define C3D_HORIZON 500
