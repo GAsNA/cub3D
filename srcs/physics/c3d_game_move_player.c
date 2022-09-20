@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:32:29 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/15 21:19:44 by rleseur          ###   ########.fr       */
+/*   Updated: 2022/09/20 16:25:22 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,10 @@ static void	update_look_vector(t_game *game)
 	float	target_x;
 	float	target_y;
 
-	target_y = (float)game->input.look_down - (float)game->input.look_up;
-	target_x = (float)game->input.look_right - (float)game->input.look_left;
+	target_x = C3D_LOOK_MOUSE_H * (float)game->input.delta_x / (float)C3D_WIDTH;
+	target_y = C3D_LOOK_MOUSE_V * (float)game->input.delta_y / (float)C3D_HEIGHT;
+	target_y += (float)game->input.look_down - (float)game->input.look_up;
+	target_x += (float)game->input.look_right - (float)game->input.look_left;
 	game->player.look.x = lerp(game->player.look.x, target_x, C3D_LOOK_SPEED);
 	game->player.look.y = lerp(game->player.look.y, target_y, C3D_LOOK_SPEED);
 }

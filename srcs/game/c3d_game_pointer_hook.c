@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_game_loop_hook.c                               :+:      :+:    :+:   */
+/*   c3d_game_pointer_hook.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:41:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 16:23:45 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/09/20 13:01:21 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/09/20 16:22:46 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_game.h"
-#include "c3d_graphics.h"
-#include "c3d_physics.h"
+#include "c3d_settings.h"
 
-int	c3d_game_loop_hook(t_game *game)
+int	c3d_game_pointer_hook(int x, int y, t_game* game)
 {
-	c3d_game_simulate(game);
-	game->input.delta_x = 0;
-	game->input.delta_y = 0;
-	c3d_game_render(game);
+	if (game->last_pointer_x != -1)
+		game->input.delta_x = x - game->last_pointer_x;
+	if (game->last_pointer_y != -1)
+		game->input.delta_y = y - game->last_pointer_y;
+	game->last_pointer_x = x;
+	game->last_pointer_y = y;
 	return (0);
 }

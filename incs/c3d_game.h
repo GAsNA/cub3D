@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 14:16:42 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:17:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_player
 	float	delta_angle;
 	float	velocity;
 
+	t_vec2	mouse_look;
 	t_vec2	look;
 }	t_player;
 
@@ -63,6 +64,9 @@ typedef struct s_input
 	bool		look_down;
 	bool		look_left;
 	bool		look_right;
+
+	int			delta_x;
+	int			delta_y;
 }	t_input;
 
 /// Stores the state of the game.
@@ -86,6 +90,9 @@ typedef struct s_game
 	size_t		width;
 	size_t		height;
 	t_tile		*tiles;
+
+	int			last_pointer_x;
+	int			last_pointer_y;
 
 	t_input		input;
 	t_player	player;
@@ -119,5 +126,6 @@ int		c3d_game_destroy_hook(t_game *game);
 int		c3d_game_loop_hook(t_game *game);
 int		c3d_game_key_pressed_hook(KeySym keysym, t_game *game);
 int		c3d_game_key_released_hook(KeySym keysym, t_game *game);
+int		c3d_game_pointer_hook(int x, int y, t_game* game);
 
 #endif

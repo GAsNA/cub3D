@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 13:43:27 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:24:10 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	game->width = map->width;
 	game->height = map->height;
 	game->tiles = map->tiles;
+	game->last_pointer_x = -1;
+	game->last_pointer_y = -1;
 	ft_unwind_defuse_to(unwind_index);
 }
 

@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/09/14 13:31:06 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/09/20 16:08:52 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ define SRCS :=
 	game/c3d_game_free_canvas.c
 	game/c3d_game_loop_hook.c
 	game/c3d_game_free_car_textures.c
+	game/c3d_game_pointer_hook.c
 
 	graphics/c3d_game_render.c
 	graphics/c3d_game_make_raycasted_image.c
