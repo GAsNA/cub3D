@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:32:29 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 16:25:22 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:45:20 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,12 @@ static void	update_look_vector(t_game *game)
 
 static bool	is_in_wall(t_game *game, float posx, float posy)
 {
-	return ((size_t)posx >= game->width || (size_t)posy >= game->height || game->tiles[(size_t)posy * game->width + (size_t)posx] == C3D_TILE_WALL);
+	t_tile	tile;
+
+	if ((size_t)posx >= game->width || (size_t)posy >= game->height)
+		return (true);
+	tile = game->tiles[(size_t)posy * game->width + (size_t)posx];
+	return (tile == C3D_TILE_WALL || tile == C3D_TILE_LINE);
 }
 
 void	c3d_game_move_player(t_game *game)
