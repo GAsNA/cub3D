@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_physics.h                                      :+:      :+:    :+:   */
+/*   c3d_set_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/26 15:28:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 20:01:59 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/09/20 20:01:35 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/09/20 20:06:14 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef C3D_PHYSICS_H
-# define C3D_PHYSICS_H
+#include "c3d_game.h"
 
-# include "c3d_game.h"
+void	c3d_set_line(t_game *game, bool line)
+{
+	size_t	i;
 
-/// Simulates the game world.
-void	c3d_game_simulate(t_game *self);
-
-/// Moves the player.
-void	c3d_game_move_player(t_game *game);
-
-bool	c3d_player_touches(t_game *game, t_tile tile);
-
-void	c3d_set_line(t_game *game, bool line);
-void    c3d_game_update_line(t_game *game);
-
-#endif
+	i = 0;
+	if (line)
+	{
+		while (i < game->width * game->height)
+		{
+			if (game->tiles[i] == C3D_TILE_LINE_OPEN)
+				game->tiles[i] = C3D_TILE_LINE;
+			i++;
+		}
+	}
+	else
+	{
+		while (i < game->width * game->height)
+		{
+			if (game->tiles[i] == C3D_TILE_LINE)
+				game->tiles[i] = C3D_TILE_LINE_OPEN;
+			i++;
+		}
+	}
+}

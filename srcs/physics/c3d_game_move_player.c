@@ -6,16 +6,15 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:32:29 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:45:20 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:53:16 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_game.h"
 #include "c3d_types.h"
+#include "c3d_physics.h"
 #include "c3d_settings.h"
 #include <math.h>
-
-#define S 0.2f
 
 inline static float	lerp(float a, float b, float t)
 {
@@ -35,22 +34,12 @@ static void	update_look_vector(t_game *game)
 	game->player.look.y = lerp(game->player.look.y, target_y, C3D_LOOK_SPEED);
 }
 
-static bool	is_in_wall(t_game *game, float posx, float posy)
-{
-	t_tile	tile;
-
-	if ((size_t)posx >= game->width || (size_t)posy >= game->height)
-		return (true);
-	tile = game->tiles[(size_t)posy * game->width + (size_t)posx];
-	return (tile == C3D_TILE_WALL || tile == C3D_TILE_LINE);
-}
-
 void	c3d_game_move_player(t_game *game)
 {
 	float	force;
 	float	target_delta_angle;
-	float	posx;
-	float	posy;
+	float	old_posx;
+	float	old_posy;
 
 	update_look_vector(game);
 	force = 0.0f;
@@ -68,13 +57,16 @@ void	c3d_game_move_player(t_game *game)
 	game->player.delta_angle = lerp(game->player.delta_angle, target_delta_angle, C3D_PLAYER_TURN_TIME);
 	game->player.angle += game->player.delta_angle * game->player.velocity * C3D_DELTA_TIME;
 	game->player.velocity += force * C3D_DELTA_TIME;
-	posx = game->player.pos.x + (game->player.velocity * cosf(game->player.angle) * C3D_DELTA_TIME);
-	posy = game->player.pos.y + (game->player.velocity * sinf(game->player.angle) * C3D_DELTA_TIME);
-	if (is_in_wall(game, posx + S, posy + S) || is_in_wall(game, posx - S, posy + S) || is_in_wall(game, posx - S, posy - S) || is_in_wall(game, posx + S, posy - S))
+	old_posx = game->player.pos.x;
+	old_posy = game->player.pos.y;
+	game->player.pos.x += (game->player.velocity * cosf(game->player.angle) * C3D_DELTA_TIME);
+	game->player.pos.y += (game->player.velocity * sinf(game->player.angle) * C3D_DELTA_TIME);
+	if (c3d_player_touches(game, C3D_TILE_WALL)
+		|| c3d_player_touches(game, C3D_TILE_LINE))
 	{
+		game->player.pos.x = old_posx;
+		game->player.pos.y = old_posy;
 		game->player.velocity = 0;
 		return ;
 	}
-	game->player.pos.x = posx;
-	game->player.pos.y = posy;
 }

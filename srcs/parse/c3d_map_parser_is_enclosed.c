@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:10:38 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:37:51 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:05:50 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ static bool	check_enclosed_from(t_map_parser *self, uint32_t x, uint32_t y)
 		|| self->lines.data[y].line[x] == C3D_TILE_VOID)
 		return (false);
 	t = &self->lines.data[y].line[x];
-	if (*t == C3D_TILE_TRACK || *t == C3D_TILE_WALL || *t == C3D_TILE_LINE)
+	if (*t == C3D_TILE_TRACK || *t == C3D_TILE_WALL || *t == C3D_TILE_LINE
+		|| *t == C3D_TILE_RLINE)
 		return (true);
 	if (*t == C3D_TILE_LINE_OPEN)
 		*t = C3D_TILE_LINE;
+	else if (*t == C3D_TILE_RLINE_OUTSIDE)
+		*t = C3D_TILE_RLINE;
 	else
 		*t = C3D_TILE_TRACK;
 	return (check_enclosed_from(self, x + 1, y)

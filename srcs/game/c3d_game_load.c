@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:42:03 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:03:16 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "c3d_game.h"
 #include "mlx.h"
 #include <stdlib.h>
+#include "c3d_physics.h"
 
 #define CAR_BG_PATH "assets/car-background.xpm"
 #define CAR_WHEEL_PATH "assets/car-wheel.xpm"
@@ -76,6 +77,7 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	game->tiles = map->tiles;
 	game->last_pointer_x = -1;
 	game->last_pointer_y = -1;
+	c3d_set_line(game, false);
 	ft_unwind_defuse_to(unwind_index);
 }
 

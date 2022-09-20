@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:41:43 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:46:28 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ typedef struct s_game
 	t_rgb		ceiling_color;
 
 	t_img		canvas;
+
+	bool		is_on_line;
 
 	size_t		width;
 	size_t		height;

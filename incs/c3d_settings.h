@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 16:38:32 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:46:51 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@
 # define C3D_LOOK_H_ANGLE 0.3f
 /// The amount of distance the player can look left/right.
 # define C3D_LOOK_V_AMOUNT 150.0f
+
+# define C3D_COLLIDER 0.3f
 
 /// The size of the camera plane.
 ///

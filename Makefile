@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/09/20 19:40:09 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/09/20 20:02:15 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,9 @@ define SRCS :=
 
 	physics/c3d_game_move_player.c
 	physics/c3d_game_simulate.c
+	physics/c3d_player_touches.c
 	physics/c3d_game_update_line.c
+	physics/c3d_set_line.c
 endef
 SRCS := $(strip $(SRCS))
 
