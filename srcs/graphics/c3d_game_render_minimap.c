@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:37:20 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:30:39 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static void	set_tile_color(
 	if (self->tiles[index] == C3D_TILE_LINE
 		|| self->tiles[index] == C3D_TILE_LINE_OPEN)
 		opacity = 200;
-	else if (self->tiles[index] == C3D_TILE_TRACK)
+	else if (self->tiles[index] == C3D_TILE_TRACK
+		|| self->tiles[index] == C3D_TILE_RLINE)
 		opacity = 100;
 	else if (self->tiles[index] == C3D_TILE_FLOOR)
 		opacity = 50;
