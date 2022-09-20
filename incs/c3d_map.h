@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/09 17:31:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 13:39:50 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:33:28 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define C3D_TILE_WALL 1U
 # define C3D_TILE_FLOOR 2U
 # define C3D_TILE_TRACK 3U
+# define C3D_TILE_LINE_OUTSIDE 4U
+# define C3D_TILE_LINE 5U
 
 /// A tile.
 typedef uint8_t	t_tile;

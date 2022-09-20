@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 16:25:08 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:38:32 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 /// The distance between the center of the minimap and the edge of the screen.
 # define C3D_MINIMAP_OFFSET 120
 /// The size of each pixel of the minimap.
-# define C3D_MINIMAP_SCALE 5.0f
+# define C3D_MINIMAP_SCALE 3.0f
 /// The squared radius of the minimap.
 # define C3D_MINIMAP_RADIUS 100
 

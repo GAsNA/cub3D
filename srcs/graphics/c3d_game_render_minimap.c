@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/08 18:37:03 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:46:37 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static inline uint8_t	blend(uint8_t dst, uint8_t src, uint8_t opacity)
 {
 	const uint16_t	scaled_dst = (uint16_t)dst * (255 - (uint16_t)opacity);
 	const uint16_t	scaled_src = (uint16_t)src * (uint16_t)opacity;
-	const uint16_t	scaled_rslt = scaled_dst + scaled_src;
+	const uint16_t	scaled_result = scaled_dst + scaled_src;
 
-	return ((uint8_t)(scaled_rslt / 255));
+	return ((uint8_t)(scaled_result / 255));
 }
 
 static void	set_tile_color(
@@ -36,9 +36,12 @@ static void	set_tile_color(
 		|| self->tiles[index] == C3D_TILE_VOID
 		|| self->tiles[index] == C3D_TILE_WALL)
 		return ;
-	if (self->tiles[index] == C3D_TILE_TRACK)
+	if (self->tiles[index] == C3D_TILE_LINE)
+		opacity = 200;
+	else if (self->tiles[index] == C3D_TILE_TRACK)
 		opacity = 100;
-	else if (self->tiles[index] == C3D_TILE_FLOOR)
+	else if (self->tiles[index] == C3D_TILE_FLOOR
+		|| self->tiles[index] == C3D_TILE_LINE_OUTSIDE)
 		opacity = 50;
 	else
 		opacity = 0;
