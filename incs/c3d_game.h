@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:46:28 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:09:59 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ typedef struct s_game
 	size_t		width;
 	size_t		height;
 	t_tile		*tiles;
+
+	uint64_t	frames;
+	uint32_t	lap;
 
 	int			last_pointer_x;
 	int			last_pointer_y;

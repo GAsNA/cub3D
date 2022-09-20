@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:41:13 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 16:23:45 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 20:10:21 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@ int	c3d_game_loop_hook(t_game *game)
 	game->input.delta_x = 0;
 	game->input.delta_y = 0;
 	c3d_game_render(game);
+	game->frames++;
 	return (0);
 }
