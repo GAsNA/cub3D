@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/15 19:12:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:49:49 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@
 /// The "speed" at which the player looks when using the array keys.
 # define C3D_LOOK_SPEED 0.05f
 /// The amount of distance the player can look up/down.
-# define C3D_LOOK_V_AMOUNT 6.0f
+# define C3D_LOOK_H_ANGLE 0.3f
 /// The amount of distance the player can look left/right.
-# define C3D_LOOK_H_AMOUNT 3.0f
+# define C3D_LOOK_V_AMOUNT 150.0f
 
 /// The size of the camera plane.
 ///

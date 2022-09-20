@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:59:24 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 14:49:18 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 12:52:09 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ inline static void	make_column(
 	if (column_start_end[2] > C3D_HEIGHT)
 		column_start_end[2] = C3D_HEIGHT;
 	i = 0;
-	while (i < C3D_HORIZON - 2.0f * C3D_LOOK_V_AMOUNT * game->player.look.y)
+	while (i < C3D_HORIZON - C3D_LOOK_V_AMOUNT * game->player.look.y)
 		set_pixel(&game->canvas, column, i++, game->ceiling_color);
 	while (i < C3D_HEIGHT)
 		set_pixel(&game->canvas, column, i++, game->floor_color);
@@ -67,9 +67,9 @@ inline static void	make_hit_column(t_game *game, t_hit *hit, size_t column)
 	uint32_t	column_start_end[3];
 
 	column_start_end[0] = column;
-	column_start_end[1] = C3D_HORIZON - 2.0f * C3D_LOOK_V_AMOUNT * game->player.look.y
+	column_start_end[1] = C3D_HORIZON - C3D_LOOK_V_AMOUNT * game->player.look.y
 		- (int32_t)(percent * (float)C3D_HEIGHT);
-	column_start_end[2] = C3D_HORIZON - 2.0f * C3D_LOOK_V_AMOUNT * game->player.look.y + (int32_t)(percent * (float)C3D_HEIGHT);
+	column_start_end[2] = C3D_HORIZON - C3D_LOOK_V_AMOUNT * game->player.look.y + (int32_t)(percent * (float)C3D_HEIGHT);
 	if (hit->dir == C3D_DIR_NORTH)
 		make_column(game, &game->north_texture, column_start_end, hit->tex_x);
 	else if (hit->dir == C3D_DIR_EAST)
@@ -91,7 +91,7 @@ void	c3d_game_make_raycasted_image(t_game *game)
 	i[2] = 0;
 	while (i[0] < game->canvas.width)
 	{
-		c3d_create_ray(&r, game->player.pos, game->player.angle + game->player.look.x, i[0]);
+		c3d_create_ray(&r, game->player.pos, game->player.angle + game->player.look.x * C3D_LOOK_H_ANGLE, i[0]);
 		if (c3d_cast_ray(&r, game, &h))
 			make_hit_column(game, &h, i[0]);
 		else
