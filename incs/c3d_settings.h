@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 15:49:21 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/15 19:12:36 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 /// The speed at which the game is played.
 /// This value can be adjusted if the computer is too fast.
-# define C3D_DELTA_TIME 0.4f
+# define C3D_DELTA_TIME 0.8f
 
 /// The force constantly applied to the player, dragging its velocity down.
 # define C3D_PLAYER_DRAG 0.02f
@@ -51,11 +51,11 @@
 # define C3D_PLAYER_BW_FORCE 0.02f
 
 /// The "speed" at which the player looks when using the array keys.
-# define C3D_LOOK_SPEED 0.02f
+# define C3D_LOOK_SPEED 0.05f
 /// The amount of distance the player can look up/down.
-# define C3D_LOOK_V_AMOUNT 80.0f
+# define C3D_LOOK_V_AMOUNT 6.0f
 /// The amount of distance the player can look left/right.
-# define C3D_LOOK_H_AMOUNT 30.0f
+# define C3D_LOOK_H_AMOUNT 3.0f
 
 /// The size of the camera plane.
 ///
