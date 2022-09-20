@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:28:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/07/26 15:45:34 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:42:35 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,7 @@ void	c3d_game_simulate(t_game *self);
 
 /// Moves the player.
 void	c3d_game_move_player(t_game *game);
+
+void    c3d_game_update_line(t_game *game);
 
 #endif

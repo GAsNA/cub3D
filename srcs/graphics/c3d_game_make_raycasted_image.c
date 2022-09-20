@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 20:59:24 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 12:52:09 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:44:07 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ inline static void	make_hit_column(t_game *game, t_hit *hit, size_t column)
 	column_start_end[1] = C3D_HORIZON - C3D_LOOK_V_AMOUNT * game->player.look.y
 		- (int32_t)(percent * (float)C3D_HEIGHT);
 	column_start_end[2] = C3D_HORIZON - C3D_LOOK_V_AMOUNT * game->player.look.y + (int32_t)(percent * (float)C3D_HEIGHT);
-	if (hit->dir == C3D_DIR_NORTH)
+	if (hit->tile == C3D_TILE_LINE)
+		make_column(game, &game->line_texture, column_start_end, hit->tex_x);
+	else if (hit->dir == C3D_DIR_NORTH)
 		make_column(game, &game->north_texture, column_start_end, hit->tex_x);
 	else if (hit->dir == C3D_DIR_EAST)
 		make_column(game, &game->east_texture, column_start_end, hit->tex_x);

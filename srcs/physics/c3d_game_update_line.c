@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_game_simulate.c                                :+:      :+:    :+:   */
+/*   c3d_game_update_line.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/26 15:28:02 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:39:17 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/09/20 18:33:11 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/09/20 19:21:41 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3d_physics.h"
 #include "c3d_game.h"
+#include "math.h"
 
-void	c3d_game_simulate(t_game *self)
+void	c3d_game_update_line(t_game *game)
 {
-	c3d_game_update_line(self);
-	c3d_game_move_player(self);
+	(void)game;
 }

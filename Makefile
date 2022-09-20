@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/09/20 16:08:52 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/09/20 19:40:09 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ define SRCS :=
 	game/c3d_game_load.c
 	game/c3d_img_load_file.c
 	game/c3d_game_free_wall_textures.c
+	game/c3d_game_free_line_texture.c
 	game/c3d_game_destroy_mlx.c
 	game/c3d_game_destroy_hook.c
 	game/c3d_game_key_hooks.c
@@ -54,6 +55,7 @@ define SRCS :=
 
 	physics/c3d_game_move_player.c
 	physics/c3d_game_simulate.c
+	physics/c3d_game_update_line.c
 endef
 SRCS := $(strip $(SRCS))
 

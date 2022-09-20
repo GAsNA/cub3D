@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 16:17:36 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:41:43 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_game
 	t_img		west_texture;
 	t_img		car_background_texture;
 	t_img		car_wheel_texture;
+	t_img		line_texture;
 
 	t_rgb		floor_color;
 	t_rgb		ceiling_color;
@@ -118,6 +119,7 @@ void	c3d_game_free_canvas(t_game *game);
 void	c3d_game_free_final_canvas(t_game *game);
 void	c3d_game_free_car_background_texture(t_game *game);
 void	c3d_game_free_car_wheel_texture(t_game *game);
+void	c3d_game_free_line_texture(t_game *game);
 
 // Those are the hooks passed to the MiniLibX to be called when an input from
 // the user is sent to the window.

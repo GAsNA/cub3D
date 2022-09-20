@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/10 20:07:14 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/20 19:44:20 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 #include "c3d_raycast.h"
 #include "c3d_settings.h"
 
-static void	populate_hit(t_ray *ray, t_hit *hit, bool side)
+static void	populate_hit(t_ray *ray, t_hit *hit, t_tile tile, bool side)
 {
+	hit->tile = tile;
 	if (side)
 	{
 		hit->distance = ((float)ray->y - ray->origin.y + (float)((1 - ray->step_y) / 2)) / ray->dir.y;
@@ -59,7 +60,8 @@ bool	c3d_cast_ray(t_ray *ray, t_game *game, t_hit *hit)
 		}
 		if (ray->x >= C3D_WIDTH || ray->y >= C3D_HEIGHT)
 			return (false);
-		if (game->tiles[ray->y * game->width + ray->x] == C3D_TILE_WALL)
-			return (populate_hit(ray, hit, side), true);
+		if (game->tiles[ray->y * game->width + ray->x] == C3D_TILE_WALL
+			|| game->tiles[ray->y * game->width + ray->x] == C3D_TILE_LINE)
+			return (populate_hit(ray, hit, game->tiles[ray->y * game->width + ray->x], side), true);
 	}
 }
