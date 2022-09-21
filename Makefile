@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/09/21 11:10:37 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/09/21 11:45:34 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME   := cub3D
 CFLAGS :=
 CC     := /bin/clang
-CFLAGS := -Wall -Wextra -g3 -D DEBUG
+CFLAGS := -Wall -Wextra -Werror
 LFLAGS := -lXext -lX11 -lm
 
 define SRCS :=
@@ -86,6 +86,9 @@ DEP_FILES := $(OBJ_FILES:.o=.d)
 # ============================================================================ #
 
 all: $(NAME)
+
+bonus: all
+.PHONY: all
 
 clean:
 	@rm -vf $(OBJ_FILES)
