@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 09:35:45 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:26:53 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@
 ///
 /// This value roughly matches the effective Field Of View.
 # define C3D_CAMERA_PLANE 0.9f
+
+# define C3D_CONFETTI_MAX 512U
 
 #endif

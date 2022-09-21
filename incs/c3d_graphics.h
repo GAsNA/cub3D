@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:30:07 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 13:26:27 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:09:34 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void    c3d_game_render_minimap(t_game *game);
 
 /// Renders the car overlay.
 void	c3d_game_render_car(t_game *game);
+
+void	c3d_render_confetti(t_game *game);
 
 #endif

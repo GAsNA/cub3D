@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/09/20 20:02:15 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/09/21 11:10:37 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ define SRCS :=
 	parse/c3d_map_parser_validate_fields.c
 
 	game/c3d_game_load.c
+	game/c3d_game_rand.c
 	game/c3d_img_load_file.c
 	game/c3d_game_free_wall_textures.c
 	game/c3d_game_free_line_texture.c
@@ -52,12 +53,14 @@ define SRCS :=
 	graphics/c3d_game_render_car.c
 	graphics/c3d_create_ray.c
 	graphics/c3d_cast_ray.c
+	graphics/c3d_render_confettis.c
 
 	physics/c3d_game_move_player.c
 	physics/c3d_game_simulate.c
 	physics/c3d_player_touches.c
 	physics/c3d_game_update_line.c
 	physics/c3d_set_line.c
+	physics/c3d_game_update_confettis.c
 endef
 SRCS := $(strip $(SRCS))
 

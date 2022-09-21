@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 10:04:38 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:14:29 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "mlx.h"
 #include <stdlib.h>
 #include "c3d_physics.h"
+#include <fcntl.h>
+#include <unistd.h>
 
 #define CAR_BG_PATH "assets/car-background.xpm"
 #define CAR_WHEEL_PATH "assets/car-wheel.xpm"
@@ -56,6 +58,28 @@ inline static float	dir_to_angle(t_dir dir)
 	return (0.0f);
 }
 
+static void	setup_rng(t_game *game)
+{
+	const int	fd = ft_open("/dev/random", O_RDONLY);
+	t_unwind	unwind_index;
+	uint8_t		*data;
+	size_t		count;
+	ssize_t		ret;
+
+	unwind_index = ft_unwind((void *)&fd, ft_close);
+	count = sizeof(uint64_t) * 2;
+	data = (uint8_t *)&game->rng_state[0];
+	while (count)
+	{
+		ret = read(fd, data, count);
+		if (ret == -1)
+			break ;
+		count -= ret;
+		data += ret;
+	}
+	ft_unwind_to(unwind_index);
+}
+
 void	c3d_game_load(t_game *game, const t_map *map)
 {
 	t_unwind	unwind_index;
@@ -80,6 +104,8 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	game->tiles = map->tiles;
 	game->last_pointer_x = -1;
 	game->last_pointer_y = -1;
+	setup_rng(game);
+	game->confettis = ft_alloc_array(C3D_CONFETTI_MAX, sizeof(t_confetti));
 	c3d_set_line(game, false);
 	ft_unwind_defuse_to(unwind_index);
 }
@@ -97,5 +123,6 @@ void	c3d_game_unload(t_game *game)
 	mlx_destroy_image(game->mlx, game->line_texture.raw);
 	mlx_destroy_image(game->mlx, game->mini_car_texture.raw);
 	mlx_destroy_display(game->mlx);
+	free(game->confettis);
 	free(game->mlx);
 }

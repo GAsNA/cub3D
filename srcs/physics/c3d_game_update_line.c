@@ -6,13 +6,31 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:33:11 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 20:13:23 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:28:11 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "c3d_game.h"
+#include "c3d_settings.h"
 #include "math.h"
 #include "c3d_physics.h"
+
+static void	spawn_confettis(t_game *game)
+{
+	size_t	i;
+
+	i = 0;
+	game->confetti_count = C3D_CONFETTI_MAX;
+	while (i < C3D_CONFETTI_MAX)
+	{
+		game->confettis[i].pos = (t_vec2){(float)(c3d_game_rand(game) % (C3D_WIDTH + 20)) - 10.0f, (float)(C3D_HEIGHT - 10 + c3d_game_rand(game) % 40)};
+		game->confettis[i].vel = (t_vec2){(float)(c3d_game_rand(game) % 60) - 30.0f, -(float)(c3d_game_rand(game) % 100) - 50.0f};
+		game->confettis[i].color.red = c3d_game_rand(game) % 256;
+		game->confettis[i].color.green = c3d_game_rand(game) % 256;
+		game->confettis[i].color.blue = c3d_game_rand(game) % 256;
+		i++;
+	}
+}
 
 void	c3d_game_update_line(t_game *game)
 {
@@ -31,6 +49,7 @@ void	c3d_game_update_line(t_game *game)
 		}
 		else
 		{
+			spawn_confettis(game);
 			ft_fmt("Lap {u32} finished in {u64}\n", game->lap, game->frames);
 			game->lap++;
 		}

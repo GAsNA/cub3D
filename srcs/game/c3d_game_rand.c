@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   c3d_game_simulate.c                                :+:      :+:    :+:   */
+/*   c3d_game_rand.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/26 15:28:02 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 11:09:57 by nmathieu         ###   ########.fr       */
+/*   Created: 2022/09/21 10:47:49 by nmathieu          #+#    #+#             */
+/*   Updated: 2022/09/21 10:50:11 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "c3d_physics.h"
 #include "c3d_game.h"
 
-void	c3d_game_simulate(t_game *self)
-{
-	c3d_game_update_line(self);
-	c3d_game_move_player(self);
-	c3d_game_update_confettis(self);
+static inline uint64_t	rotl(const uint64_t x, int k) {
+	return ((x << k) | (x >> (64 - k)));
+}
+
+uint64_t	c3d_game_rand(t_game *game) {
+	uint64_t s0;
+	uint64_t s1;
+	uint64_t result;
+
+	s0 = game->rng_state[0];
+	s1 = game->rng_state[1];
+	result = rotl(s0 + s1, 17) + s0;
+	s1 ^= s0;
+	game->rng_state[0] = rotl(s0, 49) ^ s1 ^ (s1 << 21);
+	game->rng_state[1] = rotl(s1, 28);
+	return (result);
 }

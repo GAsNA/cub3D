@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:37:57 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/14 13:30:53 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/21 11:25:56 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 void	c3d_game_render(t_game *game)
 {
 	c3d_game_make_raycasted_image(game);
+	c3d_render_confetti(game);
 	c3d_game_render_car(game);
 	c3d_game_render_minimap(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->canvas.raw, 0, 0);
