@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 20:30:39 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/21 10:14:00 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,27 @@ static void	set_minimap_color(
 	set_tile_color(self, (size_t)x, (size_t)y, rgba);
 }
 
+static void	put_mini_car(t_game *self, uint32_t x, uint32_t y)
+{
+	uint32_t	i;
+	uint32_t	j;
+	t_rgb		c;
+
+	j = 0;
+	while (j < self->mini_car_texture.height)
+	{
+		i = 0;
+		while (i < self->mini_car_texture.width)
+		{
+			c = self->mini_car_texture.data[j * self->mini_car_texture.width + i].rgb;
+			if (c.red != 255 || c.green != 0 || c.blue != 255)
+				self->canvas.data[self->canvas.width * (y + j - self->mini_car_texture.height / 2) + x + i - self->mini_car_texture.width / 2].rgb = c;
+			i++;
+		}
+		j++;
+	}
+}
+
 void	c3d_game_render_minimap(t_game *self)
 {
 	const int32_t	_x = C3D_WIDTH - C3D_MINIMAP_OFFSET;
@@ -89,8 +110,5 @@ void	c3d_game_render_minimap(t_game *self)
 				&self->canvas.data[self->canvas.width * (_y + y) + _x + x]);
 		}
 	}
-	self->canvas.data[self->canvas.width * _y + _x]
-		= (t_rgba){{{0, 0, 255}}, 0};
-	self->canvas.data[self->canvas.width * (_y + 1) + _x]
-		= (t_rgba){{{0, 0, 255}}, 0};
+	put_mini_car(self, _x, _y);
 }

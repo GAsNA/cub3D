@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:46:51 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/21 09:35:45 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@
 
 /// The speed at which the game is played.
 /// This value can be adjusted if the computer is too fast.
-# define C3D_DELTA_TIME 0.8f
+# define C3D_DELTA_TIME 0.4f
+// # define C3D_DELTA_TIME 0.8f
 
 /// The force constantly applied to the player, dragging its velocity down.
 # define C3D_PLAYER_DRAG 0.02f
 /// The force applied to the player when they wish to accelerate.
 # define C3D_PLAYER_FORCE 0.03f
 /// The angle added to the player each frame when they want to turn.
-# define C3D_PLAYER_TURN 0.2f
+# define C3D_PLAYER_TURN 0.1f
+// # define C3D_PLAYER_TURN 0.2f
 /// The amount of "time" the player takes to turn the wheel.
 # define C3D_PLAYER_TURN_TIME 0.06f
 /// The force of the player's brakes.
