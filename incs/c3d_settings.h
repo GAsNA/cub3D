@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:34:17 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 11:26:53 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:39:14 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 
 /// The speed at which the game is played.
 /// This value can be adjusted if the computer is too fast.
-# define C3D_DELTA_TIME 0.4f
+# define C3D_DELTA_TIME 0.8f
 // # define C3D_DELTA_TIME 0.8f
 
 /// The force constantly applied to the player, dragging its velocity down.

@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/23 17:13:37 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:43:02 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,8 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	(ft_unwind(game, c3d_game_destroy_window), load_images(game, map));
 	game->ceiling_color = map->ceiling_color;
 	game->floor_color = map->floor_color;
-	game->player.pos.x = (float)map->player.x;
-	game->player.pos.y = (float)map->player.y;
+	game->player.pos.x = (float)map->player.x + 0.5f;
+	game->player.pos.y = (float)map->player.y + 0.5f;
 	game->player.angle = dir_to_angle(map->player.dir);
 	game->width = map->width;
 	game->height = map->height;
