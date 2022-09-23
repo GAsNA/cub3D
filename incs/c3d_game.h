@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 04:56:39 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 11:14:15 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:20:19 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_img
 }	t_img;
 
 /// Reads an image from the provided file.
-void		c3d_img_load_file(void *mlx_ptr, const char *filename, t_img *result);
+void		c3d_img_load_file(void *mlx_ptr, const char *filename, t_img *res);
 
 /// Creates an image.
 void		c3d_img_create(
@@ -149,6 +149,6 @@ int			c3d_game_destroy_hook(t_game *game);
 int			c3d_game_loop_hook(t_game *game);
 int			c3d_game_key_pressed_hook(KeySym keysym, t_game *game);
 int			c3d_game_key_released_hook(KeySym keysym, t_game *game);
-int			c3d_game_pointer_hook(int x, int y, t_game* game);
+int			c3d_game_pointer_hook(int x, int y, t_game *game);
 
 #endif

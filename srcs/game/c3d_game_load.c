@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 05:22:34 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 11:14:29 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:13:37 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,7 @@ void	c3d_game_load(t_game *game, const t_map *map)
 	game->win = mlx_new_window(game->mlx, C3D_WIDTH, C3D_HEIGHT, "Cub3D");
 	if (!game->mlx)
 		ft_unwind_panic("failed to create a window");
-	ft_unwind(game, c3d_game_destroy_window);
-	load_images(game, map);
+	(ft_unwind(game, c3d_game_destroy_window), load_images(game, map));
 	game->ceiling_color = map->ceiling_color;
 	game->floor_color = map->floor_color;
 	game->player.pos.x = (float)map->player.x;

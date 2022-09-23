@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 11:01:02 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 11:14:50 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:07:37 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	c3d_render_confetti(t_game *game)
 	i = 0;
 	while (i < game->confetti_count)
 	{
-		put_confetti(game, (uint32_t)game->confettis[i].pos.x, (uint32_t)game->confettis[i].pos.y, game->confettis[i].color);
+		put_confetti(game, (uint32_t)game->confettis[i].pos.x,
+			(uint32_t)game->confettis[i].pos.y, game->confettis[i].color);
 		i++;
 	}
 }

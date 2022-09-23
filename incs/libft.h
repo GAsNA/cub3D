@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/03 11:38:00 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/08/02 09:38:27 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:19:08 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ size_t		ft_utf8_codep_len(uint32_t codep);
 //
 // If the provided value is not a valid UTF-8 first byte, `0` is returned.
 size_t		ft_utf8_char_len(uint8_t first_char);
-
 
 // A string that knows its length.
 //

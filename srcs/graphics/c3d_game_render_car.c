@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:26:02 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 12:53:08 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:06:16 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ static inline void	put_pixel(t_img *canvas, t_rgb color, size_t x, size_t y)
 	canvas->data[y * canvas->width + x].rgb = color;
 }
 
-static void render_background(t_game *game)
+static void	render_background(t_game *game)
 {
 	ssize_t			i;
 	ssize_t			j;
-	const ssize_t	offset_x = (ssize_t)(sinf(game->player.look.x * C3D_LOOK_H_ANGLE) * DISP_X);
-	const ssize_t	offset_y = (ssize_t)(game->player.look.y * C3D_LOOK_V_AMOUNT);
+	const ssize_t	offset_x = (ssize_t)(sinf(game->player.look.x
+				* C3D_LOOK_H_ANGLE) * DISP_X);
+	const ssize_t	offset_y = (ssize_t)(game->player.look.y
+			* C3D_LOOK_V_AMOUNT);
 
 	i = 0;
 	while (i < game->car_background_texture.height * 6)
@@ -41,7 +43,9 @@ static void render_background(t_game *game)
 		j = 0;
 		while (j < game->car_background_texture.width * 6)
 		{
-			put_pixel(&game->canvas, game->car_background_texture.data[(i / 6) * game->car_background_texture.width + j / 6].rgb, j - offset_x - 495, i - offset_y - 520);
+			put_pixel(&game->canvas, game->car_background_texture.data[(i / 6)
+				* game->car_background_texture.width + j / 6].rgb,
+				j - offset_x - 495, i - offset_y - 520);
 			j++;
 		}
 		i++;
@@ -51,9 +55,9 @@ static void render_background(t_game *game)
 static t_rgb	get_rotated_color(t_img *img, float x, float y, float a)
 {
 	const float	_x = x / (float)C3D_WHEEL_SIZE - 0.5f;
-	const float _y = y / (float)C3D_WHEEL_SIZE - 0.5f;
-	size_t	final_x;
-	size_t	final_y;
+	const float	_y = y / (float)C3D_WHEEL_SIZE - 0.5f;
+	size_t		final_x;
+	size_t		final_y;
 
 	x = _x * cosf(a) - _y * sinf(a);
 	y = _x * sinf(a) + _y * cosf(a);
@@ -79,7 +83,12 @@ static void	render_wheel(t_game *game)
 		j = 0;
 		while (j < C3D_WHEEL_SIZE)
 		{
-			put_pixel(&game->canvas, get_rotated_color(&game->car_wheel_texture, (float)j, (float)i, -game->player.delta_angle * C3D_WHEEL_FACTOR), j + WHEEL_X - C3D_WHEEL_SIZE / 2 - (size_t)(sinf(game->player.look.x * C3D_LOOK_H_ANGLE) * DISP_X), i + WHEEL_Y - C3D_WHEEL_SIZE / 2 - (size_t)(game->player.look.y *  C3D_LOOK_V_AMOUNT));
+			put_pixel(&game->canvas, get_rotated_color(&game->car_wheel_texture,
+					(float)j, (float)i, -game->player.delta_angle
+					* C3D_WHEEL_FACTOR), j + WHEEL_X - C3D_WHEEL_SIZE / 2
+				- (size_t)(sinf(game->player.look.x * C3D_LOOK_H_ANGLE)
+					* DISP_X), i + WHEEL_Y - C3D_WHEEL_SIZE / 2
+				- (size_t)(game->player.look.y * C3D_LOOK_V_AMOUNT));
 			j++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 15:28:31 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 11:10:16 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:19:27 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	c3d_game_move_player(t_game *game);
 bool	c3d_player_touches(t_game *game, t_tile tile);
 
 void	c3d_set_line(t_game *game, bool line);
-void    c3d_game_update_line(t_game *game);
+void	c3d_game_update_line(t_game *game);
 void	c3d_game_update_confettis(t_game *game);
 
 #endif

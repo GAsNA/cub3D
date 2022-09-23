@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:33:11 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 11:28:11 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:09:14 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ static void	spawn_confettis(t_game *game)
 	game->confetti_count = C3D_CONFETTI_MAX;
 	while (i < C3D_CONFETTI_MAX)
 	{
-		game->confettis[i].pos = (t_vec2){(float)(c3d_game_rand(game) % (C3D_WIDTH + 20)) - 10.0f, (float)(C3D_HEIGHT - 10 + c3d_game_rand(game) % 40)};
-		game->confettis[i].vel = (t_vec2){(float)(c3d_game_rand(game) % 60) - 30.0f, -(float)(c3d_game_rand(game) % 100) - 50.0f};
+		game->confettis[i].pos = (t_vec2){(float)(c3d_game_rand(game)
+				% (C3D_WIDTH + 20)) - 10.0f, (float)(C3D_HEIGHT - 10
+				+ c3d_game_rand(game) % 40)};
+		game->confettis[i].vel = (t_vec2){(float)(c3d_game_rand(game) % 60)
+			- 30.0f, -(float)(c3d_game_rand(game) % 100) - 50.0f};
 		game->confettis[i].color.red = c3d_game_rand(game) % 256;
 		game->confettis[i].color.green = c3d_game_rand(game) % 256;
 		game->confettis[i].color.blue = c3d_game_rand(game) % 256;

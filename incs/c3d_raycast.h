@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:14:46 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:42:51 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:19:37 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 // Describes a ray that have been launched.
 typedef struct s_ray
 {
-	t_vec2	dir;
-	t_vec2	delta;
-	t_vec2	side;
-	t_vec2	origin;
+	t_vec2		dir;
+	t_vec2		delta;
+	t_vec2		side;
+	t_vec2		origin;
 
 	uint32_t	x;
 	uint32_t	y;

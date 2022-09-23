@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 14:13:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/21 10:14:00 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:04:29 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,12 @@ static void	put_mini_car(t_game *self, uint32_t x, uint32_t y)
 		i = 0;
 		while (i < self->mini_car_texture.width)
 		{
-			c = self->mini_car_texture.data[j * self->mini_car_texture.width + i].rgb;
+			c = self->mini_car_texture.data[j
+				* self->mini_car_texture.width + i].rgb;
 			if (c.red != 255 || c.green != 0 || c.blue != 255)
-				self->canvas.data[self->canvas.width * (y + j - self->mini_car_texture.height / 2) + x + i - self->mini_car_texture.width / 2].rgb = c;
+				self->canvas.data[self->canvas.width * (y + j
+						- self->mini_car_texture.height / 2) + x + i
+					- self->mini_car_texture.width / 2].rgb = c;
 			i++;
 		}
 		j++;

@@ -6,7 +6,7 @@
 /*   By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 17:35:59 by nmathieu          #+#    #+#             */
-/*   Updated: 2022/09/20 19:44:20 by nmathieu         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:07:48 by nmathieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	populate_hit(t_ray *ray, t_hit *hit, t_tile tile, bool side)
 	hit->tile = tile;
 	if (side)
 	{
-		hit->distance = ((float)ray->y - ray->origin.y + (float)((1 - ray->step_y) / 2)) / ray->dir.y;
+		hit->distance = ((float)ray->y - ray->origin.y + (float)((1
+						- ray->step_y) / 2)) / ray->dir.y;
 		if (ray->dir.y < 0)
 			hit->dir = C3D_DIR_NORTH;
 		else
@@ -30,7 +31,8 @@ static void	populate_hit(t_ray *ray, t_hit *hit, t_tile tile, bool side)
 	}
 	else
 	{
-		hit->distance = ((float)ray->x - ray->origin.x + (float)((1 - ray->step_x) / 2.0f)) / ray->dir.x;
+		hit->distance = ((float)ray->x - ray->origin.x + (float)((1
+						- ray->step_x) / 2.0f)) / ray->dir.x;
 		if (ray->dir.x < 0)
 			hit->dir = C3D_DIR_WEST;
 		else
@@ -62,6 +64,7 @@ bool	c3d_cast_ray(t_ray *ray, t_game *game, t_hit *hit)
 			return (false);
 		if (game->tiles[ray->y * game->width + ray->x] == C3D_TILE_WALL
 			|| game->tiles[ray->y * game->width + ray->x] == C3D_TILE_LINE)
-			return (populate_hit(ray, hit, game->tiles[ray->y * game->width + ray->x], side), true);
+			return (populate_hit(ray, hit, game->tiles[ray->y * game->width
+						+ ray->x], side), true);
 	}
 }
