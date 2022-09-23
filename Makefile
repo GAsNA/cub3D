@@ -6,7 +6,7 @@
 #    By: nmathieu <nmathieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/09 17:13:48 by nmathieu          #+#    #+#              #
-#    Updated: 2022/09/21 11:45:34 by nmathieu         ###   ########.fr        #
+#    Updated: 2022/09/23 17:26:56 by nmathieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,6 @@ minilibx/libmlx_Linux.a:
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@echo "compiling '$@'..."
 	@mkdir -vp $(dir $@)
-	@$(CC) $(CFLAGS) -MMD -I $(INCS_DIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) -MMD -Iminilibx  -I $(INCS_DIR) -o $@ -c $<
 
 -include $(DEP_FILES)
